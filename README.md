@@ -1,6 +1,6 @@
 ## Project setup
 
-- `git clone https://github.com/mombachm/donation-manager-dev3.git`
+- `git clone https://github.com/Donation-Manager/donation-manager-react-app.git`
 
 - `yarn install` inside `donation-manager-dev3` folder.
 
