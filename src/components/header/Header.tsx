@@ -1,13 +1,22 @@
 import React from 'react';
 
-import { Button } from '@rmwc/button';
-import '@material/button/dist/mdc.button.css';
+import { Toolbar, ToolbarRow, ToolbarSection, ToolbarMenuIcon, ToolbarTitle, ToolbarIcon } from '@rmwc/toolbar';
+import '@material/toolbar/dist/mdc.toolbar.css';
 
 const Header = () => {
   return (
-    <div>
-      <Button>Hello World</Button>
-    </div>
+    <Toolbar>
+      <ToolbarRow>
+        <ToolbarSection alignStart>
+          <ToolbarMenuIcon icon="menu" />
+          <ToolbarTitle>Toolbar</ToolbarTitle>
+        </ToolbarSection>
+        <ToolbarSection alignEnd>
+          <ToolbarIcon icon="save" />
+          <ToolbarIcon icon="print" />
+        </ToolbarSection>
+      </ToolbarRow>
+    </Toolbar>
   );
 }
 
