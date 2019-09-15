@@ -3,12 +3,7 @@ import { Button } from '@rmwc/button';
 import { List, ListItem, ListItemGraphic, ListItemText, ListItemPrimaryText, ListItemSecondaryText, ListItemMeta } from '@rmwc/list';
 import '@material/list/dist/mdc.list.css';
 import Axios from 'axios';
-
-interface Donation {
-  _id: string;
-  description: string;
-  date: Date;
-}
+import { Donation } from '../../models/Donation';
 
 const DonationsList: React.FC = () => {
   const [donations, setDonations] = useState<Donation[]>([]);
