@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Button } from '@rmwc/button';
-import { List, ListItem, ListItemGraphic, ListItemText, ListItemPrimaryText, ListItemSecondaryText, ListItemMeta } from '@rmwc/list';
 import '@material/list/dist/mdc.list.css';
-import Axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import { List, ListItem, ListItemGraphic, ListItemText, ListItemPrimaryText, ListItemSecondaryText, ListItemMeta } from '@rmwc/list';
 import { Donation } from '../../models/Donation';
 import { DonationService } from '../../services/DonationService';
 
