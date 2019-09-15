@@ -4,16 +4,18 @@ import { List, ListItem, ListItemGraphic, ListItemText, ListItemPrimaryText, Lis
 import '@material/list/dist/mdc.list.css';
 import Axios from 'axios';
 import { Donation } from '../../models/Donation';
+import { DonationService } from '../../services/DonationService';
 
 const DonationsList: React.FC = () => {
   const [donations, setDonations] = useState<Donation[]>([]);
 
+  async function fetchAllDonations(): Promise<void> {
+    const donations = await DonationService.getAllDonations();
+    setDonations(donations);
+  }
+
   useEffect(() => {
-    Axios.get(`http://localhost:4000/donations`)
-    .then(res => {
-      const donations = res.data;
-      setDonations(donations);
-    });
+    fetchAllDonations();
   }, [ donations ]);
 
   return (
