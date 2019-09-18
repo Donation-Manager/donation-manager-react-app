@@ -4,12 +4,13 @@ import { Toolbar, ToolbarRow, ToolbarSection, ToolbarMenuIcon, ToolbarTitle, Too
 import '@material/toolbar/dist/mdc.toolbar.css';
 
 const Header = () => {
+
   return (
     <Toolbar>
       <ToolbarRow>
         <ToolbarSection alignStart>
           <ToolbarMenuIcon icon="menu" />
-          <ToolbarTitle>Toolbar</ToolbarTitle>
+          <ToolbarTitle>{document.title}</ToolbarTitle>
         </ToolbarSection>
         <ToolbarSection alignEnd>
           <ToolbarIcon icon="save" />
