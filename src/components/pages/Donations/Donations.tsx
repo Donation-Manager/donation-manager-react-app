@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react';
-import DonationsList from '../donationsList/DonationsList';
+import React from 'react';
+import './Donations.css';
+
+import DonationsList from '../../donationsList/DonationsList';
 
 const Donations: React.FC = () => {
 

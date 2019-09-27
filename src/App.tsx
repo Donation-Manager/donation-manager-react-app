@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import DonationsList from './components/donationsList/DonationsList';
+import React from 'react';
 import Header from './components/header/Header';
 import { Route } from 'react-router';
-import Home from './components/pages/Home';
-import DonationIntention from './components/pages/DonationIntentions';
-import Donations from './components/pages/Donations';
+import Home from './components/pages/Home/Home';
+import DonationIntention from './components/pages/DonationIntentions/DonationIntentions';
+import Donations from './components/pages/Donations/Donations';
 import { BrowserRouter } from 'react-router-dom';
 
 export interface Props {

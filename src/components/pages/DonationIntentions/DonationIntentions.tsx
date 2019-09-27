@@ -1,4 +1,6 @@
-import React, { useEffect, FormEvent, SyntheticEvent } from 'react';
+import React, { FormEvent } from 'react';
+import './DonationIntentions.css';
+
 import { FormField } from '@rmwc/formfield';
 import '@material/form-field/dist/mdc.form-field.css';
 
@@ -12,22 +14,25 @@ const DonationIntention: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className="DonationIntentions">
       <span>Donation Intention</span>
-      <form onSubmit={handleSubmit}>
-        <FormField>
+      <form onSubmit={handleSubmit} className="DonationIntentions-Form">
+        <FormField className="DonationIntentions-FormField">
           <label htmlFor="idCollectFromGiver">Coletar no endereço do doador</label>
           <input type="checkbox" id="idCollectFromGiver" />
         </FormField>
-        <FormField>
+        <br />
+        <FormField className="DonationIntentions-FormField">
           <label htmlFor="idCollectDate">Data da coleta</label>
           <input type="date" id="idCollectDate" />
         </FormField>
-        <FormField>
+        <br />
+        <FormField className="DonationIntentions-FormField">
           <label htmlFor="idDescription">Descrição</label>
           <input type="text" id="idDescription" />
         </FormField>
-        <FormField>
+        <br />
+        <FormField className="DonationIntentions-FormField">
           <input type="submit" id="idSubmit"/>
         </FormField>
       </form>
