@@ -11,6 +11,22 @@ const DonationIntention: React.FC = () => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log(data);
+
+    let formInput: any = event.currentTarget.elements
+
+    window.history.back();
+  }
+
+  function mountPostData(data: any): object {
+    let sendInfo: any = {}
+
+    for (const formObject of data) {
+      if (formObject.type !== "submit") {
+        sendInfo[formObject.id] = formObject.value;
+      }
+    }
+
+    return sendInfo;
   }
 
   return (
