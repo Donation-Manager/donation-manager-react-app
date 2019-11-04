@@ -5,6 +5,8 @@ import '@material/form-field/dist/mdc.form-field.css';
 import { DonationIntentionService } from '../../../services/DonationIntentionService';
 import { DonationIntentionMessage } from '../../../messages/DonationIntentionMessages';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { UserService } from '../../../services/UserService';
+import { GiverService } from '../../../services/GiverService';
 
 interface FormDonationIntention {
   collectFromGiver: string,
@@ -18,13 +20,16 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
   const [collectDate, setCollectDate] = useState<string>("");
   const [description, setDescription] = useState<string>("");
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
     const dateCollectDate = new Date(collectDate);
+    const loggedGiver = await GiverService.getLoggedGiver();
+
     const data = {
       collectFromGiver,
       dateCollectDate,
-      description
+      description,
+      giver: loggedGiver
     }
 
     DonationIntentionService.createDonationIntention(data).then(() => {

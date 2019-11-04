@@ -1,8 +1,6 @@
 import '@material/list/dist/mdc.list.css';
 import React, { useState, useEffect } from 'react';
 import { List, ListItem, ListItemGraphic, ListItemText, ListItemPrimaryText, ListItemSecondaryText, ListItemMeta } from '@rmwc/list';
-import { Donation } from '../../models/Donation';
-import { DonationService } from '../../services/DonationService';
 import { DonationIntention } from '../../models/DonationIntention';
 import { DonationIntentionService } from '../../services/DonationIntentionService';
 
@@ -24,7 +22,7 @@ const DonationIntentionsList: React.FC = () => {
         <ListItem>
           <ListItemGraphic icon="" />
           <ListItemText>
-              <ListItemPrimaryText>Giver: { donationIntention.giver.name }</ListItemPrimaryText>
+              <ListItemPrimaryText>Giver: { donationIntention.giver ? donationIntention.giver.name : "" }</ListItemPrimaryText>
               <ListItemPrimaryText>{ donationIntention.description }</ListItemPrimaryText>
               <ListItemSecondaryText>{ new Date (donationIntention.collectDate).toDateString() }</ListItemSecondaryText>
           </ListItemText>
