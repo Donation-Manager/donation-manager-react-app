@@ -19,8 +19,8 @@ const App: React.FC = () => {
         <Header/>
         <Route exact path="/" title="Teste" component={Home}/>
         <Route path="/donations" component={Donations} />
-        <Route path="/donationIntentionCreation" component={DonationIntentionForm} />
-        <Route path="/donationIntention" component={DonationIntentions} />
+        <Route path="/donationIntentionCreation" component={DonationIntentionForm as any} />
+        <Route path="/donationIntentions" component={DonationIntentions} />
       </div>
     </BrowserRouter>
   );

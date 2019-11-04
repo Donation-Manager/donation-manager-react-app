@@ -4,6 +4,7 @@ import { FormField } from '@rmwc/formfield';
 import '@material/form-field/dist/mdc.form-field.css';
 import { DonationIntentionService } from '../../../services/DonationIntentionService';
 import { DonationIntentionMessage } from '../../../messages/DonationIntentionMessages';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 interface FormDonationIntention {
   collectFromGiver: string,
@@ -11,7 +12,7 @@ interface FormDonationIntention {
   description: string
 }
 
-const DonationIntentionForm: React.FC<FormDonationIntention> = () => {
+const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) => {
 
   const [collectFromGiver, setCollectFromGiver] = useState<boolean>(false);
   const [collectDate, setCollectDate] = useState<string>("");
@@ -28,10 +29,17 @@ const DonationIntentionForm: React.FC<FormDonationIntention> = () => {
 
     DonationIntentionService.createDonationIntention(data).then(() => {
       alert(DonationIntentionMessage.CreatedSuccessfully);
-      window.history.back();
+      redirectToDonationIntentions();
     }).catch(err => {
       console.log(err);
-    });;
+    });
+  }
+
+  const redirectToDonationIntentions = () => {
+    const { history } = props;
+    if(history) {
+      history.push("/donationIntentions");
+    }
   }
 
   return (
@@ -61,4 +69,4 @@ const DonationIntentionForm: React.FC<FormDonationIntention> = () => {
   );
 }
 
-export default DonationIntentionForm;
+export default withRouter(DonationIntentionForm);

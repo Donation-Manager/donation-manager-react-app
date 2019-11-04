@@ -22,7 +22,7 @@ const Home: React.FC = () => {
           </Link>
         </GridTile>
         <GridTile>
-          <Link to="/donationIntention">
+          <Link to="/donationIntentions">
             <GridTilePrimary>
             </GridTilePrimary>
             <GridTileSecondary>
