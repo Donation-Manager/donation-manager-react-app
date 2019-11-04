@@ -1,64 +1,15 @@
-import React, { FormEvent, useState } from 'react';
+import React from 'react';
 import './DonationIntentions.css';
-import { FormField } from '@rmwc/formfield';
-import '@material/form-field/dist/mdc.form-field.css';
-import { DonationIntentionService } from '../../../services/DonationIntentionService';
-import { DonationIntentionMessage } from '../../../messages/DonationIntentionMessages';
+import DonationIntentionsList from '../../donationIntentionList/DonationIntentionsList';
 
-interface FormDonationIntention {
-  collectFromGiver: string,
-  collectDate: string,
-  description: string
-}
 
-const DonationIntention: React.FC<FormDonationIntention> = () => {
-
-  const [collectFromGiver, setCollectFromGiver] = useState<boolean>(false);
-  const [collectDate, setCollectDate] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
-    event.preventDefault();
-    const dateCollectDate = new Date(collectDate);
-    const data = {
-      collectFromGiver,
-      dateCollectDate,
-      description
-    }
-
-    DonationIntentionService.createDonationIntention(data).then(() => {
-      alert(DonationIntentionMessage.CreatedSuccessfully);
-      window.history.back();
-    }).catch(err => {
-      console.log(err);
-    });;
-  }
+const DonationIntentions: React.FC = () => {
 
   return (
-    <div className="DonationIntentions">
-      <span>Donation Intention</span>
-      <form onSubmit={handleSubmit} className="DonationIntentions-Form">
-        <FormField className="DonationIntentions-FormField">
-          <label htmlFor="idCollectFromGiver">Coletar no endereço do doador</label>
-          <input type="checkbox" id="idCollectFromGiver" checked={collectFromGiver} onChange={e => setCollectFromGiver(Boolean(e.target.value))}/>
-        </FormField>
-        <br />
-        <FormField className="DonationIntentions-FormField">
-          <label htmlFor="idCollectDate">Data da coleta</label>
-          <input type="date" id="idCollectDate" value={collectDate} onChange={e => setCollectDate(e.target.value)}/>
-        </FormField>
-        <br />
-        <FormField className="DonationIntentions-FormField">
-          <label htmlFor="idDescription">Descrição</label>
-          <input type="text" id="idDescription" value={description} onChange={e => setDescription(e.target.value)}/>
-        </FormField>
-        <br />
-        <FormField className="DonationIntentions-FormField">
-          <input type="submit" id="idSubmit"/>
-        </FormField>
-      </form>
+    <div>
+      <DonationIntentionsList />
     </div>
   );
 }
 
-export default DonationIntention;
+export default DonationIntentions;

@@ -11,12 +11,23 @@ const Home: React.FC = () => {
     <div>
       <GridList>
         <GridTile>
-          <Link to="/donationIntention">
+          <Link to="/donationIntentionCreation">
             <GridTilePrimary>
             </GridTilePrimary>
             <GridTileSecondary>
                 <GridTileTitle>
                   Cadastro de Intenções
+                </GridTileTitle>
+            </GridTileSecondary>
+          </Link>
+        </GridTile>
+        <GridTile>
+          <Link to="/donationIntention">
+            <GridTilePrimary>
+            </GridTilePrimary>
+            <GridTileSecondary>
+                <GridTileTitle>
+                  Intenções
                 </GridTileTitle>
             </GridTileSecondary>
           </Link>
