@@ -1,32 +1,37 @@
-import React, { FormEvent } from 'react';
+import React, { FormEvent, useState } from 'react';
 import './DonationIntentions.css';
-
 import { FormField } from '@rmwc/formfield';
 import '@material/form-field/dist/mdc.form-field.css';
+import { DonationIntentionService } from '../../../services/DonationIntentionService';
+import { DonationIntentionMessage } from '../../../messages/DonationIntentionMessages';
 
+interface FormDonationIntention {
+  collectFromGiver: string,
+  collectDate: string,
+  description: string
+}
 
-const DonationIntention: React.FC = () => {
+const DonationIntention: React.FC<FormDonationIntention> = () => {
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>): void {
+  const [collectFromGiver, setCollectFromGiver] = useState<boolean>(false);
+  const [collectDate, setCollectDate] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log(data);
-
-    let formInput: any = event.currentTarget.elements
-
-    window.history.back();
-  }
-
-  function mountPostData(data: any): object {
-    let sendInfo: any = {}
-
-    for (const formObject of data) {
-      if (formObject.type !== "submit") {
-        sendInfo[formObject.id] = formObject.value;
-      }
+    const dateCollectDate = new Date(collectDate);
+    const data = {
+      collectFromGiver,
+      dateCollectDate,
+      description
     }
 
-    return sendInfo;
+    DonationIntentionService.createDonationIntention(data).then(() => {
+      alert(DonationIntentionMessage.CreatedSuccessfully);
+      window.history.back();
+    }).catch(err => {
+      console.log(err);
+    });;
   }
 
   return (
@@ -35,17 +40,17 @@ const DonationIntention: React.FC = () => {
       <form onSubmit={handleSubmit} className="DonationIntentions-Form">
         <FormField className="DonationIntentions-FormField">
           <label htmlFor="idCollectFromGiver">Coletar no endereço do doador</label>
-          <input type="checkbox" id="idCollectFromGiver" />
+          <input type="checkbox" id="idCollectFromGiver" checked={collectFromGiver} onChange={e => setCollectFromGiver(Boolean(e.target.value))}/>
         </FormField>
         <br />
         <FormField className="DonationIntentions-FormField">
           <label htmlFor="idCollectDate">Data da coleta</label>
-          <input type="date" id="idCollectDate" />
+          <input type="date" id="idCollectDate" value={collectDate} onChange={e => setCollectDate(e.target.value)}/>
         </FormField>
         <br />
         <FormField className="DonationIntentions-FormField">
           <label htmlFor="idDescription">Descrição</label>
-          <input type="text" id="idDescription" />
+          <input type="text" id="idDescription" value={description} onChange={e => setDescription(e.target.value)}/>
         </FormField>
         <br />
         <FormField className="DonationIntentions-FormField">
