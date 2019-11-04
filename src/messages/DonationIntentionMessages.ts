@@ -1,3 +1,3 @@
 export enum DonationIntentionMessage {
-  CreatedSuccessfully = "Donation Intention Successfuly created."
+  CreatedSuccessfully = "Intenção de doação criada com sucesso."
 }
