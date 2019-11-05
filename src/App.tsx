@@ -1,9 +1,8 @@
 import React from 'react';
 import Header from './components/header/Header';
-import { Route } from 'react-router';
 import Home from './components/pages/Home/Home';
 import Donations from './components/pages/Donations/Donations';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import DonationIntentionForm from './components/pages/DonationIntentions/DonationIntentionsForm';
 import DonationIntentions from './components/pages/DonationIntentions/DonationIntentions';
 import DonationNeeds from './components/pages/DonationNeeds/DonationNeeds';
