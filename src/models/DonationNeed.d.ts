@@ -1,9 +1,9 @@
 import { Manager } from "./Manager";
+import { DonationItem } from "./DonationItem";
 
 export interface DonationNeed {
   dateCreationDate: Date;
-  itemName: string;
-  itemDescription: string;
+  donationItem: DonationItem;
   itemQuantity: number;
   manager: Manager;
 }
