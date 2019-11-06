@@ -54,6 +54,17 @@ const Home: React.FC = () => {
             </GridTileSecondary>
           </Link>
         </GridTile>
+        <GridTile>
+          <Link to="/donationNeedCreation">
+            <GridTilePrimary>
+            </GridTilePrimary>
+            <GridTileSecondary>
+                <GridTileTitle>
+                  Cadastro de Necessidade
+                </GridTileTitle>
+            </GridTileSecondary>
+          </Link>
+        </GridTile>
       </GridList>
     </div>
   );

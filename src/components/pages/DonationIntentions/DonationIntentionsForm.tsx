@@ -8,12 +8,6 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { UserService } from '../../../services/UserService';
 import { GiverService } from '../../../services/GiverService';
 
-interface FormDonationIntention {
-  collectFromGiver: string,
-  collectDate: string,
-  description: string
-}
-
 const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) => {
 
   const [collectFromGiver, setCollectFromGiver] = useState<boolean>(false);
