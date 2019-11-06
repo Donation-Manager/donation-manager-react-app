@@ -1,4 +1,3 @@
-import { Donation } from "../models/Donation";
 import Axios from "axios";
 import { BackendURI } from "./definitions/backend";
 import { DonationIntention } from "../models/DonationIntention";
@@ -15,7 +14,7 @@ export class DonationIntentionService {
     return response.data;
   }
 
-  public static async createDonationIntention(donationIntention: object): Promise<Donation[]> {
+  public static async createDonationIntention(donationIntention: object): Promise<DonationIntention[]> {
     const response = await Axios.post(BackendURI + DonationIntentionRoute.CreateDonationIntention, donationIntention);
     return response.data;
   }
