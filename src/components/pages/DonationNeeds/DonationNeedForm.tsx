@@ -4,6 +4,7 @@ import '@material/form-field/dist/mdc.form-field.css';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { DonationNeedMessage } from '../../../messages/DonationNeedMessage';
 import { DonationNeedService } from '../../../services/DonationNeedService';
+import { ManagerService } from '../../../services/ManagerService';
 
 const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) => {
 
@@ -14,7 +15,7 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
   const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
     const dateCreationDate = new Date();
-    // const loggedManager = await ManagerService.getLoggedManager();
+    const loggedManager = await ManagerService.getLoggedManager();
     const itemName = inputItemName.current ? inputItemName.current.value : "";
     const itemDescription = inputItemDescription.current ? inputItemDescription.current.value : "";
     const itemQuantity = inputItemQuantity.current ? inputItemQuantity.current.valueAsNumber : 0;
@@ -23,8 +24,8 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
       dateCreationDate,
       itemName,
       itemDescription,
-      itemQuantity
-      // loggedManager
+      itemQuantity,
+      loggedManager
     }
 
     DonationNeedService.createDonationNeed(data).then(() => {
