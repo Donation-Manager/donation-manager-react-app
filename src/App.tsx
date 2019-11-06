@@ -7,6 +7,7 @@ import DonationIntentionForm from './components/pages/DonationIntentions/Donatio
 import DonationIntentions from './components/pages/DonationIntentions/DonationIntentions';
 import DonationNeeds from './components/pages/DonationNeeds/DonationNeeds';
 import DonationNeedForm from './components/pages/DonationNeeds/DonationNeedForm';
+import DonationDetail from './components/donationDetail/DonationDetail';
 
 export interface Props {
   pageTitle: string
@@ -23,6 +24,7 @@ const App: React.FC = () => {
         <Route path="/donationIntentionCreation" component={DonationIntentionForm as any} />
         <Route path="/donationIntentions" component={DonationIntentions} />
         <Route path="/donationNeedCreation" component={DonationNeedForm as any} />
+        <Route path="/donationIntentions/donation{id}" component={DonationDetail} />
         <Route path="/donationsNeeds" component={DonationNeeds} />
       </div>
     </BrowserRouter>
