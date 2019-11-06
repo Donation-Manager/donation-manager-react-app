@@ -1,10 +1,11 @@
 import React, { FormEvent, useState, InputHTMLAttributes } from 'react';
-import { FormField } from '@rmwc/formfield';
 import '@material/form-field/dist/mdc.form-field.css';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { DonationNeedMessage } from '../../../messages/DonationNeedMessage';
 import { DonationNeedService } from '../../../services/DonationNeedService';
 import { ManagerService } from '../../../services/ManagerService';
+import { TextField, FormControl, makeStyles, Button, Input, Icon, Grid, Typography } from '@material-ui/core';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
 const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) => {
 
@@ -45,39 +46,66 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
   const redirectToDonationNeeds = () => {
     const { history } = props;
     if(history) {
-      history.push("/donationNeeds");
+      history.push("/donationsNeeds");
     }
   }
 
   return (
-    <div className="DonationNeeds">
-      <span>Necessidade de Doação</span>
-      <form onSubmit={handleSubmit} className="DonationNeeds-Form">
-        <FormField className="DonationNeeds-FormField">
-          <label htmlFor="idItemNameLabel">Nome do item</label>
-          <input type="text" id="idItemName" ref={inputItemName}/>
-        </FormField>
-        <br />
-        <FormField className="DonationNeeds-FormField">
-          <label htmlFor="idItemDescriptionLabel">Descrição do item</label>
-          <input type="text" id="idItemDescription" ref={inputItemDescription}/>
-        </FormField>
-        <br />
-        <FormField className="DonationNeeds-FormField">
-          <label htmlFor="idItemQuantityLabel">Quantidade</label>
-          <input type="number" id="idItemQuantity" ref={inputItemQuantity}/>
-        </FormField>
-        <br />
-        <FormField className="DonationNeeds-FormField">
-          <label htmlFor="idItemUOMLabel">Unidade</label>
-          <input type="text" id="idItemUOM" ref={inputItemUOM}/>
-        </FormField>
-        <br />
-        <FormField className="DonationNeeds-FormField">
-          <input type="submit" id="idSubmit"/>
-        </FormField>
+    <Grid
+      container
+      direction="column"
+      alignItems="center"
+      justify="center"
+      style={{ minHeight: '60vh'}}
+    >
+      <Typography variant="h5" component="h2">
+        Cadastro de Necessidade de Doação
+      </Typography>
+      <form onSubmit={handleSubmit}>
+        <FormControl>
+          <TextField
+            id="idItemNameTextField"
+            label="Nome do Item"
+            defaultValue=""
+            helperText="Helper text"
+            margin="normal"
+            inputRef={inputItemName}
+          />
+          <TextField
+            id="idItemDescriptionTextField"
+            label="Descrição do Item"
+            defaultValue=""
+            helperText="Helper text"
+            margin="normal"
+            inputRef={inputItemDescription}
+          />
+          <TextField
+            id="idItemQuantityTextField"
+            label="Quantidade"
+            defaultValue=""
+            helperText="Helper text"
+            margin="normal"
+            type="number"
+            inputRef={inputItemQuantity}
+          />
+          <TextField
+            id="idItemUOMTextField"
+            label="Unidade"
+            defaultValue=""
+            helperText="Helper text"
+            margin="normal"
+            inputRef={inputItemUOM}
+          />
+          <Button  id="idSubmit"
+            color="primary"
+            variant="contained"
+            type="submit"
+            endIcon={<CloudUploadIcon/>}>
+            Publicar Necessidade
+          </Button>
+        </FormControl>
       </form>
-    </div>
+    </Grid>
   );
 }
 
