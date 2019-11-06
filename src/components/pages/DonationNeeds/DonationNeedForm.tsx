@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useState, InputHTMLAttributes } from 'react';
 import { FormField } from '@rmwc/formfield';
 import '@material/form-field/dist/mdc.form-field.css';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
@@ -7,14 +7,17 @@ import { DonationNeedService } from '../../../services/DonationNeedService';
 
 const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) => {
 
-  const [itemName, setItemName] = useState<string>("");
-  const [itemDescription, setItemDescription] = useState<string>("");
-  const [itemQuantity, setItemQuantity] = useState<string>();
+  const inputItemName = React.createRef() as React.RefObject<HTMLInputElement>;
+  const inputItemDescription = React.createRef() as React.RefObject<HTMLInputElement>;
+  const inputItemQuantity = React.createRef() as React.RefObject<HTMLInputElement>;
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
     const dateCreationDate = new Date();
     // const loggedManager = await ManagerService.getLoggedManager();
+    const itemName = inputItemName.current ? inputItemName.current.value : "";
+    const itemDescription = inputItemDescription.current ? inputItemDescription.current.value : "";
+    const itemQuantity = inputItemQuantity.current ? inputItemQuantity.current.valueAsNumber : 0;
 
     const data = {
       dateCreationDate,
@@ -45,17 +48,17 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
       <form onSubmit={handleSubmit} className="DonationNeeds-Form">
         <FormField className="DonationNeeds-FormField">
           <label htmlFor="idItemNameLabel">Nome do item</label>
-          <input type="text" id="idItemName" value={itemName} onChange={e => setItemName(e.target.value)}/>
+          <input type="text" id="idItemName" ref={inputItemName}/>
         </FormField>
         <br />
         <FormField className="DonationNeeds-FormField">
           <label htmlFor="idItemDescriptionLabel">Descrição do item</label>
-          <input type="text" id="idItemDescription" value={itemDescription} onChange={e => setItemDescription(e.target.value)}/>
+          <input type="text" id="idItemDescription" ref={inputItemDescription}/>
         </FormField>
         <br />
         <FormField className="DonationNeeds-FormField">
           <label htmlFor="idItemQuantityLabel">Quantidade</label>
-          <input type="number" id="idItemQuantity" value={itemQuantity} onChange={e => setItemQuantity(e.target.value)}/>
+          <input type="number" id="idItemQuantity" ref={inputItemQuantity}/>
         </FormField>
         <br />
         <FormField className="DonationNeeds-FormField">
