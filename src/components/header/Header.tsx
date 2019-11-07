@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { AppBar, Toolbar, IconButton, Typography, Button, makeStyles } from '@material-ui/core';
 import Menu from '@material-ui/icons/Menu';
 
@@ -14,13 +14,17 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Header = () => {
+interface HeaderProps {
+  handleMenuOpen: () => void;
+}
+
+const Header = (props: HeaderProps) => {
   const classes = useStyles();
 
   return (
     <AppBar position="static">
       <Toolbar>
-        <IconButton edge="start" color="inherit" aria-label="menu">
+        <IconButton onClick={props.handleMenuOpen} edge="start" color="inherit" aria-label="menu">
           <Menu />
         </IconButton>
         <Typography variant="h6" className={classes.title}>
