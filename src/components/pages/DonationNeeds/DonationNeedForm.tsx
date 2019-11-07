@@ -4,7 +4,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { DonationNeedMessage } from '../../../messages/DonationNeedMessage';
 import { DonationNeedService } from '../../../services/DonationNeedService';
 import { ManagerService } from '../../../services/ManagerService';
-import { TextField, FormControl, makeStyles, Button, Input, Icon, Grid, Typography, Select, MenuItem } from '@material-ui/core';
+import { TextField, FormControl, makeStyles, Button, Input, Icon, Grid, Typography, Select, MenuItem, InputLabel } from '@material-ui/core';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { DonationItem } from '../../../models/DonationItem';
 import { DonationItemService } from '../../../services/DonationItemService';
@@ -33,7 +33,6 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
       loggedManager: loggedManager._id
     }
 
-    debugger;
     DonationNeedService.createDonationNeed(donationNeed).then(() => {
       alert(DonationNeedMessage.CreatedSuccessfully);
       redirectToDonationNeeds();
@@ -83,6 +82,7 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
       </Typography>
       <form onSubmit={handleSubmit}>
         <FormControl>
+          <InputLabel id="idDonationItemSelectLabel">Item</InputLabel>
           <Select
             labelId="idDonationItemSelectLabel"
             id="idDonationItemSelect"
