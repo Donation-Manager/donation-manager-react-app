@@ -1,27 +1,34 @@
 import React from 'react';
-import './Header.css';
+import { AppBar, Toolbar, IconButton, Typography, Button, makeStyles } from '@material-ui/core';
+import Menu from '@material-ui/icons/Menu';
 
-import { Toolbar, ToolbarRow, ToolbarSection, ToolbarMenuIcon, ToolbarTitle, ToolbarIcon } from '@rmwc/toolbar';
-import '@material/toolbar/dist/mdc.toolbar.css';
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
 
 const Header = () => {
-  function onClickToolbarMenu() {
-    window.history.back();
-  }
+  const classes = useStyles();
 
   return (
-    <Toolbar>
-      <ToolbarRow>
-        <ToolbarSection alignStart>
-          <ToolbarMenuIcon icon="menu" onClick={onClickToolbarMenu}/>
-          <ToolbarTitle>{document.title}</ToolbarTitle>
-        </ToolbarSection>
-        <ToolbarSection alignEnd>
-          <ToolbarIcon icon="save" />
-          <ToolbarIcon icon="print" />
-        </ToolbarSection>
-      </ToolbarRow>
-    </Toolbar>
+    <AppBar position="static">
+      <Toolbar>
+        <IconButton edge="start" color="inherit" aria-label="menu">
+          <Menu />
+        </IconButton>
+        <Typography variant="h6" className={classes.title}>
+          Donation Manager
+        </Typography>
+        <Button color="inherit">Login</Button>
+      </Toolbar>
+    </AppBar>
   );
 }
 
