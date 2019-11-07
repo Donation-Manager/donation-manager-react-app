@@ -1,13 +1,9 @@
-import '@material/list/dist/mdc.list.css';
 import React, { useState, useEffect } from 'react';
-
-import "./DonationNeedsList.css"
-import { List, ListItem, ListItemGraphic, ListItemText, ListItemPrimaryText, ListItemSecondaryText, ListItemMeta } from '@rmwc/list';
 import { DonationNeed } from '../../models/DonationNeed';
 import { DonationNeedService } from '../../services/DonationNeedService';
-import { Link } from 'react-router-dom';
-import { DonationItem } from '../../models/DonationItem';
-import Button from '@material-ui/core/Button';
+import { List, ListItemAvatar, Avatar, ListItemText, ListItem, ListItemSecondaryAction, IconButton } from '@material-ui/core';
+import FolderIcon from '@material-ui/icons/Folder';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const DonationNeedsList: React.FC = () => {
   const [donationNeeds, setDonationNeeds] = useState<DonationNeed[]>([]);
@@ -29,19 +25,28 @@ const DonationNeedsList: React.FC = () => {
   }, [ donationNeeds ]);
 
   return (
-    <List twoLine>
-      { donationNeeds.map(donationNeed =>
-          <ListItem>
-            <ListItemGraphic icon="" />
-            <ListItemText>
-                <ListItemPrimaryText>{ donationNeed.donationItem ? donationNeed.donationItem.itemName : "" }</ListItemPrimaryText>
-                <ListItemSecondaryText>{ buildItemQuantityText(donationNeed) }</ListItemSecondaryText>
-            </ListItemText>
-            <ListItemMeta icon="">Data de crição: { new Date (donationNeed.dateCreationDate).toDateString() }</ListItemMeta>
-            <ListItemMeta icon="">Details</ListItemMeta>
-          </ListItem>
-      )}
-    </List>
+    <div>
+      <List>
+        { donationNeeds.map(donationNeed =>
+          <ListItem button>
+            <ListItemAvatar>
+              <Avatar>
+                <FolderIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary={ donationNeed.donationItem ? donationNeed.donationItem.itemName : "" }
+              secondary={ buildItemQuantityText(donationNeed) }
+            />
+            <ListItemSecondaryAction>
+              <IconButton edge="end" aria-label="delete">
+                <DeleteIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
+          </ListItem>,
+        )}
+      </List>
+    </div>
   );
 }
 
