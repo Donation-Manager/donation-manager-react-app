@@ -14,7 +14,7 @@ export class DonationNeedService {
     return response.data;
   }
 
-  public static async createDonationNeed(donationNeed: Partial<DonationNeed>): Promise<DonationNeed> {
+  public static async createDonationNeed(donationNeed: any): Promise<DonationNeed> {
     const response = await Axios.post(BackendURI + DonationNeedRoute.CreateDonationNeed, donationNeed);
     return response.data;
   }

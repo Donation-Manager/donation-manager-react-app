@@ -3,7 +3,7 @@ import { DonationItem } from "./DonationItem";
 
 export interface DonationNeed {
   dateCreationDate: Date;
-  donationItem: DonationItem;
+  donationItem: Partial<DonationItem>;
   itemQuantity: number;
   manager: Manager;
 }

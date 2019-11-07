@@ -1,40 +1,40 @@
-import React, { FormEvent, useState, InputHTMLAttributes } from 'react';
+import React, { FormEvent, useState, InputHTMLAttributes, useEffect } from 'react';
 import '@material/form-field/dist/mdc.form-field.css';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { DonationNeedMessage } from '../../../messages/DonationNeedMessage';
 import { DonationNeedService } from '../../../services/DonationNeedService';
 import { ManagerService } from '../../../services/ManagerService';
-import { TextField, FormControl, makeStyles, Button, Input, Icon, Grid, Typography } from '@material-ui/core';
+import { TextField, FormControl, makeStyles, Button, Input, Icon, Grid, Typography, Select, MenuItem } from '@material-ui/core';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import { DonationItem } from '../../../models/DonationItem';
+import { DonationItemService } from '../../../services/DonationItemService';
 
 const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) => {
 
-  const inputItemName = React.createRef() as React.RefObject<HTMLInputElement>;
-  const inputItemDescription = React.createRef() as React.RefObject<HTMLInputElement>;
+  const initialDonationItem = {
+    _id: "",
+    itemName: "",
+    itemDescription: "",
+    itemUOM: ""
+  }
+  const [donationItems, setDonationItems] = useState<DonationItem[]>([]);
+  const [selectedDonationItem, setSelectedDonationItem] = React.useState(initialDonationItem);
   const inputItemQuantity = React.createRef() as React.RefObject<HTMLInputElement>;
-  const inputItemUOM = React.createRef() as React.RefObject<HTMLInputElement>;
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
     const dateCreationDate = new Date();
     const loggedManager = await ManagerService.getLoggedManager();
-
-    const itemName = inputItemName.current ? inputItemName.current.value : "";
-    const itemDescription = inputItemDescription.current ? inputItemDescription.current.value : "";
-    const itemUOM = inputItemUOM.current ? inputItemUOM.current.value : "";
     const itemQuantity = inputItemQuantity.current ? inputItemQuantity.current.valueAsNumber : 0;
 
     const donationNeed = {
       dateCreationDate,
-      donationItem: {
-        itemName,
-        itemDescription,
-        itemUOM
-      },
+      donationItem: selectedDonationItem._id,
       itemQuantity,
-      loggedManager
+      loggedManager: loggedManager._id
     }
 
+    debugger;
     DonationNeedService.createDonationNeed(donationNeed).then(() => {
       alert(DonationNeedMessage.CreatedSuccessfully);
       redirectToDonationNeeds();
@@ -50,6 +50,24 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
     }
   }
 
+  const handleDonationItemChange = async (event: any) => {
+    let donationItem = await DonationItemService.getDonationItemById(event.target.value);
+    if (!donationItem) {
+      donationItem = initialDonationItem;
+    }
+    setSelectedDonationItem(donationItem);
+    console.log(selectedDonationItem);
+  };
+
+  async function fetchAllDonationItems(): Promise<void> {
+    const donationItems = await DonationItemService.getAllDonationItems();
+    setDonationItems(donationItems);
+  }
+
+  useEffect(() => {
+    fetchAllDonationItems();
+  }, [ donationItems ]);
+
   return (
     <Grid
       container
@@ -63,38 +81,23 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
       </Typography>
       <form onSubmit={handleSubmit}>
         <FormControl>
-          <TextField
-            id="idItemNameTextField"
-            label="Nome do Item"
-            defaultValue=""
-            helperText="Helper text"
-            margin="normal"
-            inputRef={inputItemName}
-          />
-          <TextField
-            id="idItemDescriptionTextField"
-            label="Descrição do Item"
-            defaultValue=""
-            helperText="Helper text"
-            margin="normal"
-            inputRef={inputItemDescription}
-          />
+          <Select
+            labelId="idDonationItemSelectLabel"
+            id="idDonationItemSelect"
+            onChange={handleDonationItemChange}
+          >
+            { donationItems.map(donationItem =>
+              <MenuItem value={donationItem._id}>{donationItem.itemName}</MenuItem>
+            )}
+          </Select>
           <TextField
             id="idItemQuantityTextField"
             label="Quantidade"
             defaultValue=""
-            helperText="Helper text"
+            helperText={selectedDonationItem.itemUOM}
             margin="normal"
             type="number"
             inputRef={inputItemQuantity}
-          />
-          <TextField
-            id="idItemUOMTextField"
-            label="Unidade"
-            defaultValue=""
-            helperText="Helper text"
-            margin="normal"
-            inputRef={inputItemUOM}
           />
           <Button  id="idSubmit"
             color="primary"
