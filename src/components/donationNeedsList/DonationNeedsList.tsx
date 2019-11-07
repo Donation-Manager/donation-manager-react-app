@@ -4,6 +4,7 @@ import { DonationNeedService } from '../../services/DonationNeedService';
 import { List, ListItemAvatar, Avatar, ListItemText, ListItem, ListItemSecondaryAction, IconButton } from '@material-ui/core';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 const DonationNeedsList: React.FC = () => {
   const [donationNeeds, setDonationNeeds] = useState<DonationNeed[]>([]);
@@ -28,7 +29,7 @@ const DonationNeedsList: React.FC = () => {
     <div>
       <List>
         { donationNeeds.map(donationNeed =>
-          <ListItem button>
+          <ListItem button divider>
             <ListItemAvatar>
               <Avatar>
                 <FolderIcon />
@@ -39,6 +40,9 @@ const DonationNeedsList: React.FC = () => {
               secondary={ buildItemQuantityText(donationNeed) }
             />
             <ListItemSecondaryAction>
+              <IconButton edge="end" aria-label="edit">
+                <EditIcon />
+              </IconButton>
               <IconButton edge="end" aria-label="delete">
                 <DeleteIcon />
               </IconButton>
