@@ -19,18 +19,17 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
   }
   const [donationItems, setDonationItems] = useState<DonationItem[]>([]);
   const [selectedDonationItem, setSelectedDonationItem] = React.useState(initialDonationItem);
-  const inputItemQuantity = React.createRef() as React.RefObject<HTMLInputElement>;
+  const [donationItemQuantity, setDonationItemQuantity] = useState<number>(0);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
     const dateCreationDate = new Date();
     const loggedManager = await ManagerService.getLoggedManager();
-    const itemQuantity = inputItemQuantity.current ? inputItemQuantity.current.valueAsNumber : 0;
 
     const donationNeed = {
       dateCreationDate,
       donationItem: selectedDonationItem._id,
-      itemQuantity,
+      itemQuantity: donationItemQuantity,
       loggedManager: loggedManager._id
     }
 
@@ -56,7 +55,10 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
       donationItem = initialDonationItem;
     }
     setSelectedDonationItem(donationItem);
-    console.log(selectedDonationItem);
+  };
+
+  const handleDonationItemQuantityChange = async (event: any) => {
+    setDonationItemQuantity(event.target.valueAsNumber);
   };
 
   async function fetchAllDonationItems(): Promise<void> {
@@ -93,11 +95,12 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
           <TextField
             id="idItemQuantityTextField"
             label="Quantidade"
-            defaultValue=""
+            defaultValue="0"
+            value={donationItemQuantity}
             helperText={selectedDonationItem.itemUOM}
             margin="normal"
             type="number"
-            inputRef={inputItemQuantity}
+            onChange={handleDonationItemQuantityChange}
           />
           <Button  id="idSubmit"
             color="primary"
