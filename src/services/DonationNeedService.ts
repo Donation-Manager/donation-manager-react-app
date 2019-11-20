@@ -5,7 +5,8 @@ import { DonationNeed } from "../models/DonationNeed";
 enum DonationNeedRoute {
   GetAllDonationNeeds = "/donationNeeds",
   CreateDonationNeed = "/createDonationNeed",
-  GetDonationNeedById = "/donationNeedById"
+  GetDonationNeedById = "/donationNeedById",
+  DeleteDonationNeedById = "/deleteDonationNeedById"
 }
 
 export class DonationNeedService {
@@ -26,6 +27,11 @@ export class DonationNeedService {
         donationNeedId: id
       }
     });
+    return response.data;
+  }
+
+  public static async deleteDonationNeedById(donationNeedId: string): Promise<void> {
+    const response = await Axios.post(BackendURI + DonationNeedRoute.DeleteDonationNeedById, { donationNeedId });
     return response.data;
   }
 }

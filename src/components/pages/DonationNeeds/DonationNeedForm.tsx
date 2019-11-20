@@ -42,19 +42,10 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
       loggedManager: loggedManager._id
     }
 
-    createDonationNeed(donationNeed);
+    saveDonationNeed(donationNeed);
   }
 
-  const createDonationNeed = async (donationNeed: object) => {
-    await DonationNeedService.createDonationNeed(donationNeed).then(() => {
-      alert(DonationNeedMessage.CreatedSuccessfully);
-      redirectToDonationNeeds();
-    }).catch(err => {
-      console.log(err);
-    });
-  }
-
-  const updateDonationNeed = async (donationNeed: object) => {
+  const saveDonationNeed = async (donationNeed: object) => {
     await DonationNeedService.createDonationNeed(donationNeed).then(() => {
       alert(DonationNeedMessage.CreatedSuccessfully);
       redirectToDonationNeeds();
