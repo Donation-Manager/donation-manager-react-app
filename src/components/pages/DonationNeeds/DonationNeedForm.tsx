@@ -8,6 +8,12 @@ import { TextField, FormControl, makeStyles, Button, Input, Icon, Grid, Typograp
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { DonationItem } from '../../../models/DonationItem';
 import { DonationItemService } from '../../../services/DonationItemService';
+import { match } from 'react-router';
+import { DonationNeed } from '../../../models/DonationNeed';
+
+interface DonationIntentionFormRouteParams {
+  id: string
+}
 
 const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) => {
 
@@ -17,8 +23,10 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
     itemDescription: "",
     itemUOM: ""
   }
+
   const [donationItems, setDonationItems] = useState<DonationItem[]>([]);
-  const [selectedDonationItem, setSelectedDonationItem] = React.useState(initialDonationItem);
+  const [donationNeedId, setDonationNeedId] = useState<string | undefined>(undefined);
+  const [selectedDonationItem, setSelectedDonationItem] = useState<Partial<DonationItem>>(initialDonationItem);
   const [donationItemQuantity, setDonationItemQuantity] = useState<number>(0);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
@@ -27,13 +35,27 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
     const loggedManager = await ManagerService.getLoggedManager();
 
     const donationNeed = {
+      _id: donationNeedId,
       dateCreationDate,
       donationItem: selectedDonationItem._id,
       itemQuantity: donationItemQuantity,
       loggedManager: loggedManager._id
     }
 
-    DonationNeedService.createDonationNeed(donationNeed).then(() => {
+    createDonationNeed(donationNeed);
+  }
+
+  const createDonationNeed = async (donationNeed: object) => {
+    await DonationNeedService.createDonationNeed(donationNeed).then(() => {
+      alert(DonationNeedMessage.CreatedSuccessfully);
+      redirectToDonationNeeds();
+    }).catch(err => {
+      console.log(err);
+    });
+  }
+
+  const updateDonationNeed = async (donationNeed: object) => {
+    await DonationNeedService.createDonationNeed(donationNeed).then(() => {
       alert(DonationNeedMessage.CreatedSuccessfully);
       redirectToDonationNeeds();
     }).catch(err => {
@@ -65,9 +87,25 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
     setDonationItems(donationItems);
   }
 
+  const handleFormRoute = async (match: match<DonationIntentionFormRouteParams>): Promise<void> => {
+    if (match.params.id) {
+      const donationNeedId = match.params.id;
+      const donationNeed = await DonationNeedService.getDonationNeedById(donationNeedId);
+      if (donationNeed) {
+        setDonationNeedId(donationNeed._id);
+        setSelectedDonationItem(donationNeed.donationItem);
+        setDonationItemQuantity(donationNeed.itemQuantity);
+      } else {
+        alert (DonationNeedMessage.InvalidDonationNeed)
+        redirectToDonationNeeds();
+      }
+    }
+  };
+
   useEffect(() => {
     fetchAllDonationItems();
-  }, [ donationItems ]);
+    handleFormRoute(props.match as match<DonationIntentionFormRouteParams>);
+  }, [ ]);
 
   return (
     <Grid
@@ -87,6 +125,7 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
             labelId="idDonationItemSelectLabel"
             id="idDonationItemSelect"
             onChange={handleDonationItemChange}
+            value={selectedDonationItem._id}
           >
             { donationItems.map(donationItem =>
               <MenuItem value={donationItem._id}>{donationItem.itemName}</MenuItem>

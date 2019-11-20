@@ -5,8 +5,9 @@ import { List, ListItemAvatar, Avatar, ListItemText, ListItem, ListItemSecondary
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
-const DonationNeedsList: React.FC = () => {
+const DonationNeedsList: React.FC<RouteComponentProps> = (props, context) => {
   const [donationNeeds, setDonationNeeds] = useState<DonationNeed[]>([]);
 
   async function fetchAllDonationNeeds(): Promise<void> {
@@ -21,9 +22,16 @@ const DonationNeedsList: React.FC = () => {
     return "";
   }
 
+  const redirectToDonationNeedEdition = (donationNeedId: string): any => {
+    const { history } = props;
+    if(history) {
+      history.push(`/donationNeedEdition/${donationNeedId}`);
+    }
+  }
+
   useEffect(() => {
     fetchAllDonationNeeds();
-  }, [ donationNeeds ]);
+  }, [ ]);
 
   return (
     <div>
@@ -40,7 +48,7 @@ const DonationNeedsList: React.FC = () => {
               secondary={ buildItemQuantityText(donationNeed) }
             />
             <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="edit">
+              <IconButton edge="end" aria-label="edit" onClick={() => { redirectToDonationNeedEdition(donationNeed._id)} }>
                 <EditIcon />
               </IconButton>
               <IconButton edge="end" aria-label="delete">
@@ -54,4 +62,4 @@ const DonationNeedsList: React.FC = () => {
   );
 }
 
-export default DonationNeedsList;
+export default withRouter(DonationNeedsList);
