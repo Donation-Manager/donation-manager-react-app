@@ -5,6 +5,7 @@ import { List, ListItemAvatar, Avatar, ListItemText, ListItem, ListItemSecondary
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import { Link } from 'react-router-dom';
 
 const DonationNeedsList: React.FC = () => {
   const [donationNeeds, setDonationNeeds] = useState<DonationNeed[]>([]);
@@ -29,7 +30,7 @@ const DonationNeedsList: React.FC = () => {
     <div>
       <List>
         { donationNeeds.map(donationNeed =>
-          <ListItem button divider>
+          <ListItem button divider component={Link} to="/donationIntentionCreation">
             <ListItemAvatar>
               <Avatar>
                 <FolderIcon />
