@@ -30,7 +30,7 @@ const DonationNeedsList: React.FC = () => {
     <div>
       <List>
         { donationNeeds.map(donationNeed =>
-          <ListItem button divider component={Link} to="/donationIntentionCreation">
+          <ListItem button divider component={Link} to={{ pathname: '/donationIntentionCreation', state: { donation: donationNeed}} }>
             <ListItemAvatar>
               <Avatar>
                 <FolderIcon />
