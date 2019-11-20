@@ -24,7 +24,7 @@ const DonationNeedsList: React.FC = () => {
 
   useEffect(() => {
     fetchAllDonationNeeds();
-  }, [ donationNeeds ]);
+  }, []);
 
   return (
     <div>

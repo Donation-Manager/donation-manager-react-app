@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 const DonationIntentionsList: React.FC = () => {
   const [donationIntentions, setDonationIntentions] = useState<DonationIntention[]>([]);
 
+  console.log(donationIntentions);
   async function fetchAllDonationIntetions(): Promise<void> {
     const donationIntentions = await DonationIntentionService.getAllDonationIntentions();
     setDonationIntentions(donationIntentions);
@@ -17,7 +18,7 @@ const DonationIntentionsList: React.FC = () => {
 
   useEffect(() => {
     fetchAllDonationIntetions();
-  }, [ donationIntentions ]);
+  }, []);
 
   return (
     <List twoLine>
