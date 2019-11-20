@@ -13,7 +13,7 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
   const [collectFromGiver, setCollectFromGiver] = useState<boolean>(false);
   const [collectDate, setCollectDate] = useState<string>("");
   const [description, setDescription] = useState<string>("");
-  const donationNeed = props.location.state;
+  const donationNeed = props.location.state.donation;
   console.log(donationNeed);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
@@ -25,7 +25,8 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
       collectFromGiver,
       dateCollectDate,
       description,
-      giver: loggedGiver
+      giver: loggedGiver,
+      donationNeed: donationNeed
     }
 
     DonationIntentionService.createDonationIntention(data).then(() => {
