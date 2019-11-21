@@ -6,6 +6,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
@@ -77,23 +78,55 @@ const Header = () => {
         </IconButton>
       </div>
       <Divider />
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
+        <Link to="/">
+          <ListItem button onClick={() => {setMenuState(false);}}>
+            <ListItemIcon><InboxIcon /></ListItemIcon>
+            <ListItemText primary="Home" />
           </ListItem>
-        ))}
-      </List>
+        </Link>
       <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+      <Link to="/donationNeedCreation">
+        <ListItem button onClick={() => {setMenuState(false);}}>
+          <ListItemIcon><InboxIcon /></ListItemIcon>
+          <ListItemText primary="Cadastro de Intenções" />
+        </ListItem>
+      </Link>
+      <Divider />
+      <Link to="/donationIntentions">
+        <ListItem button onClick={() => {setMenuState(false);}}>
+          <ListItemIcon><InboxIcon /></ListItemIcon>
+          <ListItemText primary="Intenções" />
+        </ListItem>
+      </Link>
+      <Divider />
+      <Link to="/donations">
+        <ListItem button onClick={() => {setMenuState(false);}}>
+          <ListItemIcon><InboxIcon /></ListItemIcon>
+          <ListItemText primary="Doações" />
+        </ListItem>
+      </Link>
+      <Divider />
+      <Link to="/donationsNeeds">
+        <ListItem button onClick={() => {setMenuState(false);}}>
+          <ListItemIcon><InboxIcon /></ListItemIcon>
+          <ListItemText primary="Necessidades de Doações" />
+        </ListItem>
+      </Link>
+      <Divider />
+      <Link to="/donationNeedCreation">
+        <ListItem button onClick={() => {setMenuState(false);}}>
+          <ListItemIcon><InboxIcon /></ListItemIcon>
+          <ListItemText primary="Cadastro de Necessidade" />
+        </ListItem>
+      </Link>
+      <Divider />
+      <Link to="/stock">
+        <ListItem button onClick={() => {setMenuState(false);}}>
+          <ListItemIcon><InboxIcon /></ListItemIcon>
+          <ListItemText primary="Estoque" />
+        </ListItem>
+      </Link>
+      <Divider />
     </Drawer>
     </div>
 
