@@ -7,6 +7,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   fab: {
@@ -69,7 +70,7 @@ const DonationNeedsList: React.FC<RouteComponentProps> = (props, context) => {
       </Fab>
       <List>
         { donationNeeds.map(donationNeed =>
-          <ListItem button divider>
+          <ListItem button divider component={Link} to={{ pathname: '/donationIntentionCreation', state: { donation: donationNeed}} }>
             <ListItemAvatar>
               <Avatar>
                 <FolderIcon />
