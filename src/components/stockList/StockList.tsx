@@ -1,6 +1,6 @@
 import React, { useState, useEffect, forwardRef } from 'react';
-import { DonationNeed } from '../../models/DonationNeed';
-import { DonationNeedService } from '../../services/DonationNeedService';
+import { StockItem } from '../../models/StockItem';
+import { StockItemService } from '../../services/StockItemService';
 import { List, ListItemAvatar, Avatar, ListItemText, ListItem, ListItemSecondaryAction, IconButton, Button, makeStyles, Fab } from '@material-ui/core';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -23,7 +23,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import { DonationNeedMessage } from '../../messages/DonationNeedMessage';
+import { StockItemMessage } from '../../messages/StockItemMessage';
 
 const tableIcons : Icons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -46,8 +46,8 @@ const tableIcons : Icons = {
 };
 
 interface TableState {
-  columns: Array<Column<DonationNeed>>;
-  data: Array<DonationNeed>;
+  columns: Array<Column<StockItem>>;
+  data: Array<StockItem>;
 }
 
 const StockList: React.FC<RouteComponentProps> = (props, context) => {
@@ -61,34 +61,38 @@ const StockList: React.FC<RouteComponentProps> = (props, context) => {
     data: [],
   });
 
-  async function fetchAllDonationNeeds(): Promise<void> {
-    const donationNeeds = await DonationNeedService.getAllDonationNeeds();
+  async function fetchAllStockItems(): Promise<void> {
+    const stockItems = await StockItemService.getAllStockItems();
     setState((prevState) => {
-      const data = donationNeeds;
+      const data = stockItems;
       return { ...prevState, data };
     });
   }
 
 
-  const deleteDonationNeed = async (donationNeedId: string): Promise<void> => {
+  const deleteStockItem = async (stockItemId: string): Promise<void> => {
     // eslint-disable-next-line no-restricted-globals
-    await DonationNeedService.deleteDonationNeedById(donationNeedId);
-    return fetchAllDonationNeeds();
+    await StockItemService.deleteStockItemById(stockItemId);
+    return fetchAllStockItems();
   }
 
-  const saveDonationNeed = async (donationNeed: any): Promise<void> => {
-    if (donationNeed.donationItem) {
-      donationNeed.donationItem = donationNeed.donationItem._id
+  const saveStockItem = async (stockItem: any): Promise<void> => {
+    if (stockItem.donationItem) {
+      stockItem.donationItem = stockItem.donationItem._id
     }
-    const newDonationNeed = await DonationNeedService.createDonationNeed(donationNeed);
-    if (newDonationNeed) {
-      alert(DonationNeedMessage.CreatedSuccessfully);
+    if (!stockItem.donationItem) {
+      debugger;
+      stockItem.donationItem._id = undefined
     }
-    fetchAllDonationNeeds();
+    const newStockItem = await StockItemService.createStockItem(stockItem);
+    if (newStockItem) {
+      alert(StockItemMessage.CreatedSuccessfully);
+    }
+    fetchAllStockItems();
   }
 
   useEffect(() => {
-    fetchAllDonationNeeds();
+    fetchAllStockItems();
   }, [ ]);
 
   return (
@@ -100,13 +104,13 @@ const StockList: React.FC<RouteComponentProps> = (props, context) => {
       data={state.data}
       editable={{
         onRowAdd: newData => {
-          return saveDonationNeed(newData);
+          return saveStockItem(newData);
         },
         onRowUpdate: newData => {
-          return saveDonationNeed(newData);
+          return saveStockItem(newData);
         },
         onRowDelete: oldData => {
-          return deleteDonationNeed(oldData._id);
+          return deleteStockItem(oldData._id);
         },
       }}
     />
