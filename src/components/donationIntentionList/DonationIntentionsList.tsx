@@ -23,7 +23,7 @@ const DonationIntentionsList: React.FC = () => {
   return (
     <List twoLine>
       { donationIntentions.map(donationIntention =>
-        <Link className="DonationIntentionList-Link" to={`/donationIntentions/donation${donationIntention.giver ? donationIntention.giver._id : ""}`}>
+        <Link className="DonationIntentionList-Link" to={`/donationIntention/${donationIntention.giver ? donationIntention.giver._id : ""}`}>
           <ListItem>
             <ListItemGraphic icon="" />
             <ListItemText>

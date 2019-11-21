@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './DonationDetail.css';
 import { List, ListItem, ListItemGraphic, ListItemText, ListItemPrimaryText, ListItemSecondaryText } from '@rmwc/list';
 import { DonationIntention } from '../../models/DonationIntention';
 import { DonationIntentionService } from '../../services/DonationIntentionService';

@@ -7,8 +7,8 @@ import DonationIntentions from './components/pages/DonationIntentions/DonationIn
 import DonationNeeds from './components/pages/DonationNeeds/DonationNeeds';
 import DonationNeedForm from './components/pages/DonationNeeds/DonationNeedForm';
 import DonationDetail from './components/donationDetail/DonationDetail';
-import DonationNeedsList from './components/donationNeedsList/DonationNeedsList';
 import { BrowserRouter, Route } from 'react-router-dom';
+import Stock from './components/pages/Stock/Stock';
 
 export interface Props {
   pageTitle: string
@@ -27,7 +27,8 @@ const App: React.FC = () => {
         <Route path="/donationNeedCreation" component={DonationNeedForm as any} />
         <Route path="/donationNeedEdition/:id" component={DonationNeedForm as any} />
         <Route path="/donationIntentions/donation{id}" component={DonationDetail} />
-        <Route path="/donationsNeeds" component={DonationNeedsList as any} />
+        <Route path="/donationsNeeds" component={DonationNeeds as any} />
+        <Route path="/stock" component={Stock as any} />
       </div>
     </BrowserRouter>
   );
