@@ -116,6 +116,9 @@ const StockList: React.FC<RouteComponentProps> = (props, context) => {
   return (
     <div>
       <MaterialTable
+      options={{
+        paging: false
+      }}
       icons={tableIcons}
       title="Estoque"
       columns={state.columns}
