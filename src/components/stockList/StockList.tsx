@@ -100,9 +100,11 @@ const StockList: React.FC<RouteComponentProps> = (props, context) => {
       }
     }
 
-    const newStockItem = await StockItemService.createStockItem(stockItem);
-    if (newStockItem) {
+    const responseStockItem = await StockItemService.createStockItem(stockItem);
+    if (responseStockItem && !stockItem._id) {
       alert(StockItemMessage.CreatedSuccessfully);
+    } else if (stockItem._id) {
+      alert(StockItemMessage.UpdatedSuccessfully);
     }
     fetchAllStockItems();
   }
