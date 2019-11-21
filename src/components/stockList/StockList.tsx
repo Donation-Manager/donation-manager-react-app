@@ -47,24 +47,33 @@ const tableIcons : Icons = {
 
 interface TableState {
   columns: Array<Column<StockItem>>;
-  data: Array<StockItem>;
+  data: Array<any>;
 }
 
 const StockList: React.FC<RouteComponentProps> = (props, context) => {
   const [state, setState] = React.useState<TableState>({
     columns: [
-      { title: 'Item', field: 'donationItem.itemName' },
-      { title: 'Quantidade', field: 'itemQuantity', type: 'numeric' },
-      { title: 'Unidade de Medida', field: 'donationItem.itemUOM', editable: 'never' },
-      { title: 'Descrição', field: 'donationItem.itemDescription', editable: 'never' }
+      { title: 'Item', field: 'itemName' },
+      { title: 'Quantidade', field: 'itemQuantity', type: 'numeric', initialEditValue: 0 },
+      { title: 'Unidade de Medida', field: 'itemUOM' },
+      { title: 'Descrição', field: 'itemDescription' }
     ],
-    data: [],
+    data: [ ],
   });
 
   async function fetchAllStockItems(): Promise<void> {
     const stockItems = await StockItemService.getAllStockItems();
     setState((prevState) => {
-      const data = stockItems;
+      const data = stockItems.map((stockItem) => {
+        return {
+          stockItemId: stockItem._id,
+          donationItemId: stockItem.donationItem._id,
+          itemName: stockItem.donationItem.itemName,
+          itemQuantity: stockItem.itemQuantity,
+          itemUOM: stockItem.donationItem.itemUOM,
+          itemDescription: stockItem.donationItem.itemDescription
+        }
+      });
       return { ...prevState, data };
     });
   }
@@ -77,13 +86,20 @@ const StockList: React.FC<RouteComponentProps> = (props, context) => {
   }
 
   const saveStockItem = async (stockItem: any): Promise<void> => {
-    if (stockItem.donationItem) {
-      stockItem.donationItem = stockItem.donationItem._id
+
+    if (stockItem) {
+      stockItem = {
+        _id: stockItem.stockItemId ? stockItem.stockItemId : undefined,
+        itemQuantity: stockItem.itemQuantity,
+        donationItem: {
+          _id: stockItem.donationItemId ? stockItem.donationItemId : undefined,
+          itemName: stockItem.itemName,
+          itemUOM: stockItem.itemUOM,
+          itemDescription: stockItem.itemDescription
+        }
+      }
     }
-    if (!stockItem.donationItem) {
-      debugger;
-      stockItem.donationItem._id = undefined
-    }
+
     const newStockItem = await StockItemService.createStockItem(stockItem);
     if (newStockItem) {
       alert(StockItemMessage.CreatedSuccessfully);
@@ -104,13 +120,14 @@ const StockList: React.FC<RouteComponentProps> = (props, context) => {
       data={state.data}
       editable={{
         onRowAdd: newData => {
+          newData.donationItem = {}
           return saveStockItem(newData);
         },
         onRowUpdate: newData => {
           return saveStockItem(newData);
         },
         onRowDelete: oldData => {
-          return deleteStockItem(oldData._id);
+          return deleteStockItem(oldData.stockItemId);
         },
       }}
     />
