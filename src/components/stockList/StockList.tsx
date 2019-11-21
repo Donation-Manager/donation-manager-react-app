@@ -45,15 +45,6 @@ const tableIcons : Icons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-const useStyles = makeStyles(theme => ({
-  fab: {
-    margin: theme.spacing(1)
-  },
-  input: {
-    display: 'none'
-  },
-}));
-
 interface TableState {
   columns: Array<Column<DonationNeed>>;
   data: Array<DonationNeed>;
@@ -70,39 +61,12 @@ const StockList: React.FC<RouteComponentProps> = (props, context) => {
     data: [],
   });
 
-  const classes = useStyles();
-
-  const [donationNeeds, setDonationNeeds] = useState<DonationNeed[]>([]);
-
   async function fetchAllDonationNeeds(): Promise<void> {
     const donationNeeds = await DonationNeedService.getAllDonationNeeds();
-    setDonationNeeds(donationNeeds);
     setState((prevState) => {
       const data = donationNeeds;
       return { ...prevState, data };
     });
-  }
-
-  const buildItemQuantityText = (donationNeed: DonationNeed): string => {
-    if (donationNeed.donationItem) {
-      return `${donationNeed.itemQuantity} ${donationNeed.donationItem.itemUOM}`
-    }
-    return "";
-  }
-
-  const redirectToDonationNeedEdition = (donationNeedId: string): any => {
-    const { history } = props;
-    if(history) {
-      history.push(`/donationNeedEdition/${donationNeedId}`);
-    }
-  }
-
-
-  const redirectToDonationNeedCreation = (): void => {
-    const { history } = props;
-    if(history) {
-      history.push(`/donationNeedCreation`);
-    }
   }
 
 
@@ -112,17 +76,15 @@ const StockList: React.FC<RouteComponentProps> = (props, context) => {
     return fetchAllDonationNeeds();
   }
 
-  const saveDonationNeed = async (donationNeed: object): Promise<void> => {
+  const saveDonationNeed = async (donationNeed: any): Promise<void> => {
+    if (donationNeed.donationItem) {
+      donationNeed.donationItem = donationNeed.donationItem._id
+    }
     const newDonationNeed = await DonationNeedService.createDonationNeed(donationNeed);
     if (newDonationNeed) {
       alert(DonationNeedMessage.CreatedSuccessfully);
     }
-
-    return setState((prevState) => {
-      const data = [...prevState.data];
-      data.push(newDonationNeed);
-      return { ...prevState, data };
-    });
+    fetchAllDonationNeeds();
   }
 
   useEffect(() => {
@@ -138,12 +100,11 @@ const StockList: React.FC<RouteComponentProps> = (props, context) => {
       data={state.data}
       editable={{
         onRowAdd: newData => {
-            return saveDonationNeed(newData);
-          },
-        onRowUpdate: (newData, oldData) =>
-          new Promise(resolve => {
-
-          }),
+          return saveDonationNeed(newData);
+        },
+        onRowUpdate: newData => {
+          return saveDonationNeed(newData);
+        },
         onRowDelete: oldData => {
           return deleteDonationNeed(oldData._id);
         },
