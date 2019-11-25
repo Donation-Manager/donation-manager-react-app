@@ -23,7 +23,7 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
 
     const data = {
       collectFromGiver,
-      dateCollectDate,
+      collectDate,
       description,
       giver: loggedGiver,
       donationNeed: donationNeed

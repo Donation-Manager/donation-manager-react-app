@@ -1,4 +1,5 @@
 import { Giver } from "./Giver";
+import { DonationNeed } from "./DonationNeed";
 
 export interface DonationIntention {
   _id: int;
@@ -6,4 +7,5 @@ export interface DonationIntention {
   collectDate: Date;
   description: string;
   giver: Giver;
+  donationNeed: DonationNeed;
 }

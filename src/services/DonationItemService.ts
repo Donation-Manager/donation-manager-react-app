@@ -14,7 +14,7 @@ export class DonationItemService {
     return response.data;
   }
 
-  public static async getDonationItemById(id: string): Promise<DonationItem | null> {
+  public static async getDonationItemById(id: string | undefined | Partial<DonationItem>): Promise<any> {
     const response = await Axios.get(BackendURI + DonationItemRoute.GetDonationItemById, {
       params: {
         donationItemId: id
