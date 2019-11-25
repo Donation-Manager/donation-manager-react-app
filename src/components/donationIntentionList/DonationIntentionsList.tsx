@@ -39,7 +39,7 @@ const tableIcons : Icons = {
   Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
   Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
   DetailPanel: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
-  Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
+  Edit: forwardRef((props, ref) => <AddIcon {...props} ref={ref} />),
   Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
   Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
   FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
@@ -74,6 +74,9 @@ const DonationIntentionsList: React.FC = () => {
 
   async function fetchAllDonationIntetions(): Promise<void> {
     const donationIntentions = await DonationIntentionService.getAllDonationIntentions();
+    if (donationIntentions == null) {
+      return Promise.resolve();
+    }
     const itens = donationIntentions.map(async (intention) => {
       const item = await DonationItemService.getDonationItemById(intention.donationNeed != undefined ? intention.donationNeed.donationItem : undefined);
       return item;
