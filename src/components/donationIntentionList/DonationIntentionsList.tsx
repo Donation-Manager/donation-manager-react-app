@@ -74,24 +74,26 @@ const DonationIntentionsList: React.FC = () => {
 
   async function fetchAllDonationIntetions(): Promise<void> {
     const donationIntentions = await DonationIntentionService.getAllDonationIntentions();
-    donationIntentions.forEach((each) => {
-      DonationItemService.getDonationItemById(each.donationNeed != undefined ? each.donationNeed.donationItem : undefined).then(sucess => {
-        if (each.donationNeed != undefined) {
-          each.donationNeed.donationItem = sucess;
-        }
-      });
+    const itens = donationIntentions.map(async (intention) => {
+      const item = await DonationItemService.getDonationItemById(intention.donationNeed != undefined ? intention.donationNeed.donationItem : undefined);
+      return item;
+    });
+    const resultado = await Promise.all(itens);
+    donationIntentions.forEach((each, index) => {
+      if (each.donationNeed != undefined) {
+        each.donationNeed.donationItem = resultado[index];
+      }
     });
     setState((prevState) => {
       const data = donationIntentions.map((donationIntention) => {
-        console.log(donationIntention);
         return {
           collectFromGiver: donationIntention.collectFromGiver,
           collectDate: donationIntention.collectDate,
           description: donationIntention.description,
           giver: donationIntention.giver.name,
           item: donationIntention.donationNeed != undefined ?
-            donationIntention.donationNeed.donationItem.itemName + ' ' + donationIntention.donationNeed.donationItem.itemUOM
-            : undefined
+            donationIntention.donationNeed.donationItem.itemName : undefined,
+          quantity: donationIntention.quantity
         }
       });
       return { ...prevState, data };

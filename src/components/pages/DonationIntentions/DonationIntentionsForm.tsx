@@ -13,6 +13,7 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
   const [collectFromGiver, setCollectFromGiver] = useState<boolean>(false);
   const [collectDate, setCollectDate] = useState<string>("");
   const [description, setDescription] = useState<string>("");
+  const [quantity, setQuantity] = useState<number>();
   const donationNeed = props.location.state.donation;
   console.log(donationNeed);
 
@@ -25,6 +26,7 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
       collectFromGiver,
       collectDate,
       description,
+      quantity,
       giver: loggedGiver,
       donationNeed: donationNeed
     }
@@ -56,6 +58,11 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
         <FormField className="DonationIntentions-FormField">
           <label htmlFor="idCollectDate">Data da coleta</label>
           <input type="date" id="idCollectDate" value={collectDate} onChange={e => setCollectDate(e.target.value)}/>
+        </FormField>
+        <br />
+        <FormField className="DonationIntentions-FormField">
+          <label htmlFor="idQuantity">Quantidade</label>
+          <input type="number" id="idQuantity" value={quantity} onChange={e => setQuantity(Number(e.target.value))}/>
         </FormField>
         <br />
         <FormField className="DonationIntentions-FormField">

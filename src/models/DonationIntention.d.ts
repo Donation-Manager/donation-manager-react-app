@@ -8,4 +8,5 @@ export interface DonationIntention {
   description: string;
   giver: Giver;
   donationNeed: DonationNeed;
+  quantity: number;
 }
