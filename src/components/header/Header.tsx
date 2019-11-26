@@ -11,6 +11,7 @@ import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import AddIcon from '@material-ui/icons/Add';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
@@ -45,7 +46,6 @@ const useStyles = makeStyles(theme => ({
 
 const Header = () => {
   const classes = useStyles();
-  const theme = useTheme();
 
   const [menuState, setMenuState] = useState<boolean>(false);
 
@@ -67,10 +67,11 @@ const Header = () => {
         <Typography color="textPrimary" variant="h6" className={classes.title}>
           Donation Manager
         </Typography>
-        <Button color="default">Login</Button>
+        <Button color="default" endIcon={<VpnKeyIcon/>}>Login</Button>
       </Toolbar>
     </AppBar>
     <Drawer
+    color="primary"
       className={classes.drawer}
       variant="persistent"
       anchor="left"
@@ -81,7 +82,7 @@ const Header = () => {
     >
       <div className={classes.drawerHeader}>
         <IconButton onClick={handleMenuClose}>
-          {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+          {menuState ? <ChevronLeftIcon /> : <ChevronRightIcon />}
         </IconButton>
       </div>
       <Divider />
@@ -92,7 +93,7 @@ const Header = () => {
           </ListItem>
         </Link>
       <Divider />
-      <Link className={classes.link} to="/donationNeedCreation">
+      <Link className={classes.link} to="/donationIntentionCreation">
         <ListItem button onClick={() => {setMenuState(false);}}>
           <ListItemIcon><div><FavoriteBorder /><AddIcon style={{marginLeft: -10, marginBottom: -10}} /></div></ListItemIcon>
           <ListItemText primaryTypographyProps={{color: "textPrimary"}} primary="Cadastro de Intenções" />
@@ -109,7 +110,7 @@ const Header = () => {
       <Link className={classes.link} to="/donations">
         <ListItem button onClick={() => {setMenuState(false);}}>
           <ListItemIcon><InsertEmoticonIcon /></ListItemIcon>
-          <ListItemText primaryTypographyProps={{color: "textPrimary"}} primary="Doações" />
+          <ListItemText color="primary" primaryTypographyProps={{color: "textPrimary"}} primary="Doações" />
         </ListItem>
       </Link>
       <Divider />

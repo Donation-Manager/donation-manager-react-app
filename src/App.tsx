@@ -20,19 +20,19 @@ export interface Props {
 // const theme = createMuiTheme();
 
 // Or Create your Own theme:
-const theme = createMuiTheme({
+const customTheme = createMuiTheme({
   palette: {
     primary: {
       main: '#FFF'
     },
     secondary: {
-      main: '#7EBD69'
+      main: '#4dc0f9'
     },
     text:{
       primary: '#444',
       secondary: '#777'
     }
-  },
+  }
 });
 
 const useStyles = makeStyles(theme => ({
@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
     padding: 0,
     margin: 0,
     height:'100vh',
-    backgroundImage: `url(${backgroundImage})`,
+    backgroundColor: customTheme.palette.primary.main,
     backgroundSize: '100%'
   }
 }));
@@ -50,7 +50,7 @@ const App: React.FC = () => {
 
   return (
     <BrowserRouter>
-      <MuiThemeProvider theme={theme}>
+      <MuiThemeProvider theme={customTheme}>
         <div className={classes.root}>
           <Header />
           <Route exact path="/" title="Teste" component={Home}/>

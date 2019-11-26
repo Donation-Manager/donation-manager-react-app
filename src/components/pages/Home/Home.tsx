@@ -15,8 +15,10 @@ import backgroundImage from '../../../images/background.jpg'
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(8),
-    flexGrow: 1
-    // backgroundImage: `url(${backgroundImage})`,
+    margin: 0,
+    height:'100vh',
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: '100%'
   },
   control: {
     padding: theme.spacing(4),
