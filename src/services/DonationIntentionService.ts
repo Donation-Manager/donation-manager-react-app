@@ -5,7 +5,8 @@ import { DonationIntention } from "../models/DonationIntention";
 enum DonationIntentionRoute {
   GetAllDonationIntentions = "/donationIntentions",
   CreateDonationIntention = "/createDonationIntention",
-  AcceptDonation = "/acceptDonation"
+  AcceptDonation = "/acceptDonation",
+  GetApprovedDonations = "/approvedDonationsIntentions"
 }
 
 export class DonationIntentionService {
@@ -26,6 +27,11 @@ export class DonationIntentionService {
         intentionId: donationIntention._id
       }
     });
+    return response.data;
+  }
+
+  public static async getApprovedDonationIntentions(): Promise<DonationIntention[]> {
+    const response = await Axios.get(BackendURI + DonationIntentionRoute.GetApprovedDonations);
     return response.data;
   }
 }
