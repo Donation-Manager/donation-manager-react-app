@@ -17,7 +17,7 @@ import backgroundImage from '../../../images/background.jpg'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(4),
+    padding: theme.spacing(8),
     flexGrow: 1
     // backgroundImage: `url(${backgroundImage})`,
   },
@@ -25,18 +25,31 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(4),
   },
   card: {
-    maxWidth: 345,
-    minWidth: 300,
+    maxWidth: 400,
+    minWidth: 250
   },
   cardContent: {
+    fontSize: 10,
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
+    textDecoration: 'none',
     "text-align": "center"
   },
   icon: {
-    fontSize: 140
+    fontSize: 130
   },
   addIcon: {
     marginLeft: -50,
-    fontSize: 60
+    fontSize: 50
+  },
+  link: {
+    textDecoration: 'none'
+  },
+  title: {
+    fontSize: 17
+  },
+  description: {
+    fontSize: 13
   }
 }));
 
@@ -49,16 +62,16 @@ const Home: React.FC = () => {
         <Grid item xs={12} >
           <Grid container justify="center" spacing={2}>
             <Grid key={0} item>
-              <Link to="/donationIntentionCreation">
+              <Link className={classes.link} to="/donationIntentionCreation">
                 <Card className={classes.card}>
                   <CardActionArea className={classes.cardContent}>
                     <FavoriteBorder color="secondary" className={classes.icon}/>
                     <AddIcon color="secondary" className={classes.addIcon}/>
                     <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
+                      <Typography className={classes.title} gutterBottom variant="h5" component="h2">
                         Cadastro de Intenções
                       </Typography>
-                      <Typography variant="body2" color="textSecondary" component="p">
+                      <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
                         Descrição
                       </Typography>
                     </CardContent>
@@ -72,15 +85,15 @@ const Home: React.FC = () => {
               </Link>
             </Grid>
             <Grid key={1} item>
-              <Link to="/donationIntentions">
+              <Link className={classes.link}  to="/donationIntentions">
                 <Card className={classes.card}>
                   <CardActionArea className={classes.cardContent}>
                     <FavoriteBorder color="secondary" className={classes.icon}/>
                     <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
+                      <Typography className={classes.title} gutterBottom variant="h5" component="h2">
                         Intenções
                       </Typography>
-                      <Typography variant="body2" color="textSecondary" component="p">
+                      <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
                         Descrição
                       </Typography>
                     </CardContent>
@@ -94,15 +107,38 @@ const Home: React.FC = () => {
               </Link>
             </Grid>
             <Grid key={2} item>
-              <Link to="/donations">
+              <Link className={classes.link}  to="/donations">
                 <Card className={classes.card}>
                   <CardActionArea className={classes.cardContent}>
                   <InsertEmoticonIcon color="secondary" className={classes.icon}/>
                   <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
+                      <Typography className={classes.title} gutterBottom variant="h5" component="h2">
                         Doações
                       </Typography>
-                      <Typography variant="body2" color="textSecondary" component="p">
+                      <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
+                        Descrição
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                  {/* <CardActions>
+                    <Button size="small" color="primary">
+                      Saber mais
+                    </Button>
+                  </CardActions> */}
+                </Card>
+              </Link>
+            </Grid>
+            <Grid key={4} item>
+              <Link className={classes.link}  to="/donationNeedCreation">
+                <Card className={classes.card}>
+                  <CardActionArea className={classes.cardContent}>
+                    <EmojiPeopleIcon color="secondary" className={classes.icon}/>
+                    <AddIcon color="secondary" className={classes.addIcon}/>
+                    <CardContent>
+                      <Typography className={classes.title} gutterBottom variant="h5" component="h2">
+                        Cadastro de Necessidade
+                      </Typography>
+                      <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
                         Descrição
                       </Typography>
                     </CardContent>
@@ -116,15 +152,15 @@ const Home: React.FC = () => {
               </Link>
             </Grid>
             <Grid key={3} item>
-              <Link to="/donationsNeeds">
+              <Link className={classes.link}  to="/donationsNeeds">
                 <Card className={classes.card}>
                   <CardActionArea className={classes.cardContent}>
                   <EmojiPeopleIcon color="secondary" className={classes.icon}/>
                     <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
+                      <Typography className={classes.title} gutterBottom variant="h5" component="h2">
                         Necessidades de Doações
                       </Typography>
-                      <Typography variant="body2" color="textSecondary" component="p">
+                      <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
                         Descrição
                       </Typography>
                     </CardContent>
@@ -138,38 +174,15 @@ const Home: React.FC = () => {
               </Link>
             </Grid>
             <Grid key={4} item>
-              <Link to="/donationNeedCreation">
-                <Card className={classes.card}>
-                  <CardActionArea className={classes.cardContent}>
-                    <EmojiPeopleIcon color="secondary" className={classes.icon}/>
-                    <AddIcon color="secondary" className={classes.addIcon}/>
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        Cadastro de Necessidade
-                      </Typography>
-                      <Typography variant="body2" color="textSecondary" component="p">
-                        Descrição
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                  {/* <CardActions>
-                    <Button size="small" color="primary">
-                      Saber mais
-                    </Button>
-                  </CardActions> */}
-                </Card>
-              </Link>
-            </Grid>
-            <Grid key={4} item>
-              <Link to="/stock">
+              <Link className={classes.link}  to="/stock">
                 <Card className={classes.card}>
                   <CardActionArea className={classes.cardContent}>
                     <ListAltIcon color="secondary" className={classes.icon}/>
                     <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
+                      <Typography className={classes.title} gutterBottom variant="h5" component="h2">
                         Estoque
                       </Typography>
-                      <Typography variant="body2" color="textSecondary" component="p">
+                      <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
                         Descrição
                       </Typography>
                     </CardContent>
