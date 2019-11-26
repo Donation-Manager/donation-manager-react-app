@@ -9,7 +9,7 @@ import DonationNeedForm from './components/pages/DonationNeeds/DonationNeedForm'
 import DonationDetail from './components/donationDetail/DonationDetail';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Stock from './components/pages/Stock/Stock';
-import { createMuiTheme, MuiThemeProvider, makeStyles } from '@material-ui/core';
+import { createMuiTheme, MuiThemeProvider, makeStyles, Box } from '@material-ui/core';
 import backgroundImage from './images/background.jpg'
 
 export interface Props {
@@ -37,9 +37,6 @@ const customTheme = createMuiTheme({
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: 0,
-    margin: 0,
-    height:'100vh',
     backgroundColor: customTheme.palette.primary.main,
     backgroundSize: '100%'
   }
@@ -51,7 +48,7 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <MuiThemeProvider theme={customTheme}>
-        <div className={classes.root}>
+        <Box height="100%" className={classes.root}>
           <Header />
           <Route exact path="/" title="Teste" component={Home}/>
           <Route path="/donations" component={Donations} />
@@ -62,7 +59,7 @@ const App: React.FC = () => {
           <Route path="/donationIntentions/donation{id}" component={DonationDetail} />
           <Route path="/donationsNeeds" component={DonationNeeds as any} />
           <Route path="/stock" component={Stock as any} />
-        </div>
+        </Box>
       </MuiThemeProvider>
     </BrowserRouter>
   );

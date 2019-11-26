@@ -9,14 +9,14 @@ import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import AddIcon from '@material-ui/icons/Add';
-import { Grid, makeStyles, Paper, Card, CardActionArea, CardMedia, CardContent, Typography, Button, CardActions, Icon } from '@material-ui/core';
+import { Grid, makeStyles, Paper, Card, CardActionArea, CardMedia, CardContent, Typography, Button, CardActions, Icon, Box } from '@material-ui/core';
 import backgroundImage from '../../../images/background.jpg'
 
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(8),
     margin: 0,
-    height:'100vh',
+    backgroundColor: 'transparent',
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: '100%'
   },
@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
     textDecoration: 'none',
-    "text-align": "center"
+    textAlign: "center"
   },
   icon: {
     fontSize: 130
@@ -56,7 +56,7 @@ const Home: React.FC = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <Box className={classes.root}>
       <Grid container spacing={2} alignItems="center" >
         <Grid item xs={12} >
           <Grid container justify="center" spacing={2}>
@@ -197,7 +197,7 @@ const Home: React.FC = () => {
           </Grid>
         </Grid>
       </Grid>
-    </div>
+    </Box>
   );
 }
 
