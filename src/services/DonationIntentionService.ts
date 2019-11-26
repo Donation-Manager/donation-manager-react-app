@@ -4,7 +4,8 @@ import { DonationIntention } from "../models/DonationIntention";
 
 enum DonationIntentionRoute {
   GetAllDonationIntentions = "/donationIntentions",
-  CreateDonationIntention = "/createDonationIntention"
+  CreateDonationIntention = "/createDonationIntention",
+  AcceptDonation = "/acceptDonation"
 }
 
 export class DonationIntentionService {
@@ -16,6 +17,15 @@ export class DonationIntentionService {
 
   public static async createDonationIntention(donationIntention: object): Promise<DonationIntention[]> {
     const response = await Axios.post(BackendURI + DonationIntentionRoute.CreateDonationIntention, donationIntention);
+    return response.data;
+  }
+
+  public static async acceptIntention(donationIntention: any): Promise<any> {
+    const response = await Axios.post(BackendURI + DonationIntentionRoute.AcceptDonation, donationIntention, {
+      params: {
+        intentionId: donationIntention._id
+      }
+    });
     return response.data;
   }
 }

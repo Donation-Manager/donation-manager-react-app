@@ -90,6 +90,7 @@ const DonationIntentionsList: React.FC = () => {
     setState((prevState) => {
       const data = donationIntentions.map((donationIntention) => {
         return {
+          _id: donationIntention._id,
           collectFromGiver: donationIntention.collectFromGiver,
           collectDate: donationIntention.collectDate,
           description: donationIntention.description,
@@ -107,76 +108,27 @@ const DonationIntentionsList: React.FC = () => {
     fetchAllDonationIntetions();
   }, []);
 
-  async function fetchAllStockItems(): Promise<void> {
-    const stockItems = await StockItemService.getAllStockItems();
-    setState((prevState) => {
-      const data = stockItems.map((stockItem) => {
-        return {
-          stockItemId: stockItem._id,
-          donationItemId: stockItem.donationItem._id,
-          itemName: stockItem.donationItem.itemName,
-          itemQuantity: stockItem.itemQuantity,
-          itemUOM: stockItem.donationItem.itemUOM,
-          itemDescription: stockItem.donationItem.itemDescription
-        }
-      });
-      return { ...prevState, data };
-    });
-  }
-
-
-  const deleteStockItem = async (stockItemId: string): Promise<void> => {
-    // eslint-disable-next-line no-restricted-globals
-    await StockItemService.deleteStockItemById(stockItemId);
-    return fetchAllStockItems();
-  }
-
-  const saveStockItem = async (stockItem: any): Promise<void> => {
-
-    if (stockItem) {
-      stockItem = {
-        _id: stockItem.stockItemId ? stockItem.stockItemId : undefined,
-        itemQuantity: stockItem.itemQuantity,
-        donationItem: {
-          _id: stockItem.donationItemId ? stockItem.donationItemId : undefined,
-          itemName: stockItem.itemName,
-          itemUOM: stockItem.itemUOM,
-          itemDescription: stockItem.itemDescription
-        }
-      }
-    }
-
-    const responseStockItem = await StockItemService.createStockItem(stockItem);
-    if (responseStockItem && !stockItem._id) {
-      alert(StockItemMessage.CreatedSuccessfully);
-    } else if (stockItem._id) {
-      alert(StockItemMessage.UpdatedSuccessfully);
-    }
-    fetchAllStockItems();
-  }
-
   return (
     <div>
       <MaterialTable
       options={{
         paging: false
       }}
+      actions={[
+        {
+          icon: 'save',
+          tooltip: 'Save User',
+          onClick: (event, rowData) => {
+            // Do save operation
+            console.log(rowData);
+            DonationIntentionService.acceptIntention(rowData);
+          }
+        }
+      ]}
       icons={tableIcons}
       title="Intenções de doação"
       columns={state.columns}
       data={state.data}
-      editable={{
-        onRowAdd: newData => {
-          newData.donationItem = {}
-          return saveStockItem(newData);
-        },
-        onRowUpdate: newData => {
-          return saveStockItem(newData);
-        },
-        onRowDelete: oldData => {
-          return deleteStockItem(oldData.stockItemId);
-        },
-      }}
     />
     </div>
   );
