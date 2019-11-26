@@ -59,7 +59,7 @@ const Header = () => {
 
   return (
     <div>
-    <AppBar position="static">
+    <AppBar color="secondary" position="static">
       <Toolbar>
         <IconButton onClick={handleMenuOpen} edge="start" color="default" aria-label="menu">
           <Menu />
@@ -71,7 +71,7 @@ const Header = () => {
       </Toolbar>
     </AppBar>
     <Drawer
-    color="primary"
+      color="primary"
       className={classes.drawer}
       variant="persistent"
       anchor="left"

@@ -5,7 +5,7 @@ import { DonationIntentionMessage } from '../../../messages/DonationIntentionMes
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { UserService } from '../../../services/UserService';
 import { GiverService } from '../../../services/GiverService';
-import { FormControl, InputLabel, FormControlLabel, Checkbox, TextField, Button, Typography, Grid } from '@material-ui/core';
+import { FormControl, InputLabel, FormControlLabel, Checkbox, TextField, Button, Typography, Grid, FormGroup, Divider, Box } from '@material-ui/core';
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
@@ -16,6 +16,9 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
   const [collectDate, setCollectDate] = useState<string>(new Date().toDateString());
   const [description, setDescription] = useState<string>("");
   const [quantity, setQuantity] = useState<number>();
+  const [street, setStreet] = useState<string>("");
+  const [houseNumber, setHouseNumber] = useState<string>("");
+  const [city, setCity] = useState<string>("");
   const donationNeed = props.location.state.donation;
   console.log(donationNeed);
 
@@ -29,6 +32,9 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
       collectDate,
       description,
       quantity,
+      street,
+      houseNumber,
+      city,
       giver: loggedGiver,
       donationNeed: donationNeed
     }
@@ -63,23 +69,14 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
       <br/>
       <form onSubmit={handleSubmit} className="DonationIntentions-Form">
         <FormControl>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={collectFromGiver}
-                onChange={e => setCollectFromGiver(Boolean(e.target.checked))}
-              />
-            }
-            value="collectFromGiver"
-            label="Coletar no endereço do doador"
-          />
           <br/>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
+            label="Data da Coleta"
             clearable
             value={collectDate}
             placeholder="10/10/2018"
-            onChange={date => setCollectDate((date as Date).toDateString())}
+            onChange={date => { if(date) {setCollectDate((date as Date).toDateString())} }}
             minDate={new Date()}
             format="dd/MM/yyyy"
           />
@@ -103,8 +100,56 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
             onChange={e => setDescription(e.target.value)}
           />
           <br/>
+          <FormControlLabel
+            control={
+              <Checkbox color="primary"
+                checked={collectFromGiver}
+                onChange={e => setCollectFromGiver(Boolean(e.target.checked))}
+              />
+            }
+            value="collectFromGiver"
+            label="Coletar no endereço do doador"
+          />
+          <br/>
+          <Box visibility={ collectFromGiver ? 'visible' : 'hidden'}>
+            <Typography variant="subtitle1">
+              Endereço
+            </Typography>
+            <Divider />
+            <TextField
+              style={{margin: 10}}
+              id="idDescription"
+              label="Rua"
+              defaultValue=""
+              value={street}
+              margin="normal"
+              type="text"
+              onChange={e => setStreet(e.target.value)}
+            />
+            <TextField
+              style={{margin: 10}}
+              id="idDescription"
+              label="Número"
+              defaultValue=""
+              value={houseNumber}
+              margin="normal"
+              type="text"
+              onChange={e => setHouseNumber(e.target.value)}
+            />
+            <TextField
+              style={{margin: 10}}
+              id="idDescription"
+              label="Cidade"
+              defaultValue=""
+              value={city}
+              margin="normal"
+              type="text"
+              onChange={e => setCity(e.target.value)}
+            />
+          </Box>
+          <br/>
           <Button  id="idSubmit"
-            color="secondary"
+            color="primary"
             variant="contained"
             type="submit"
             endIcon={<CloudUploadIcon/>}>

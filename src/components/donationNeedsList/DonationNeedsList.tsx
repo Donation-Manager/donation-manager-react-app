@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   fab: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(2)
   },
   input: {
     display: 'none'

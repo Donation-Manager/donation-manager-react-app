@@ -135,7 +135,7 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
           />
           <br/>
           <Button  id="idSubmit"
-            color="secondary"
+            color="primary"
             variant="contained"
             type="submit"
             endIcon={<CloudUploadIcon/>}>

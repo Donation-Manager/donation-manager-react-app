@@ -64,8 +64,8 @@ const Home: React.FC = () => {
               <Link className={classes.link} to="/donationIntentionCreation">
                 <Card className={classes.card}>
                   <CardActionArea className={classes.cardContent}>
-                    <FavoriteBorder color="secondary" className={classes.icon}/>
-                    <AddIcon color="secondary" className={classes.addIcon}/>
+                    <FavoriteBorder color="primary" className={classes.icon}/>
+                    <AddIcon color="primary" className={classes.addIcon}/>
                     <CardContent>
                       <Typography className={classes.title} gutterBottom variant="h5" component="h2">
                         Cadastro de Intenções
@@ -87,7 +87,7 @@ const Home: React.FC = () => {
               <Link className={classes.link}  to="/donationIntentions">
                 <Card className={classes.card}>
                   <CardActionArea className={classes.cardContent}>
-                    <FavoriteBorder color="secondary" className={classes.icon}/>
+                    <FavoriteBorder color="primary" className={classes.icon}/>
                     <CardContent>
                       <Typography className={classes.title} gutterBottom variant="h5" component="h2">
                         Intenções
@@ -109,7 +109,7 @@ const Home: React.FC = () => {
               <Link className={classes.link}  to="/donations">
                 <Card className={classes.card}>
                   <CardActionArea className={classes.cardContent}>
-                  <InsertEmoticonIcon color="secondary" className={classes.icon}/>
+                  <InsertEmoticonIcon color="primary" className={classes.icon}/>
                   <CardContent>
                       <Typography className={classes.title} gutterBottom variant="h5" component="h2">
                         Doações
@@ -131,8 +131,8 @@ const Home: React.FC = () => {
               <Link className={classes.link}  to="/donationNeedCreation">
                 <Card className={classes.card}>
                   <CardActionArea className={classes.cardContent}>
-                    <EmojiPeopleIcon color="secondary" className={classes.icon}/>
-                    <AddIcon color="secondary" className={classes.addIcon}/>
+                    <EmojiPeopleIcon color="primary" className={classes.icon}/>
+                    <AddIcon color="primary" className={classes.addIcon}/>
                     <CardContent>
                       <Typography className={classes.title} gutterBottom variant="h5" component="h2">
                         Cadastro de Necessidade
@@ -154,7 +154,7 @@ const Home: React.FC = () => {
               <Link className={classes.link}  to="/donationsNeeds">
                 <Card className={classes.card}>
                   <CardActionArea className={classes.cardContent}>
-                  <EmojiPeopleIcon color="secondary" className={classes.icon}/>
+                  <EmojiPeopleIcon color="primary" className={classes.icon}/>
                     <CardContent>
                       <Typography className={classes.title} gutterBottom variant="h5" component="h2">
                         Necessidades de Doações
@@ -176,7 +176,7 @@ const Home: React.FC = () => {
               <Link className={classes.link}  to="/stock">
                 <Card className={classes.card}>
                   <CardActionArea className={classes.cardContent}>
-                    <ListAltIcon color="secondary" className={classes.icon}/>
+                    <ListAltIcon color="primary" className={classes.icon}/>
                     <CardContent>
                       <Typography className={classes.title} gutterBottom variant="h5" component="h2">
                         Estoque

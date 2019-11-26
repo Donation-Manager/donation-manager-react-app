@@ -19,17 +19,17 @@ export interface Props {
 // use default theme
 // const theme = createMuiTheme();
 
-// Or Create your Own theme:
+// // Or Create your Own theme:
 const customTheme = createMuiTheme({
   palette: {
     primary: {
-      main: '#FFF'
+      main: '#b72f4d'
     },
     secondary: {
-      main: '#4dc0f9'
+      main: '#fff'
     },
     text:{
-      primary: '#444',
+      primary: '#333',
       secondary: '#777'
     }
   }
@@ -37,9 +37,10 @@ const customTheme = createMuiTheme({
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: customTheme.palette.primary.main,
-    backgroundSize: '100%'
-  }
+    backgroundColor: 'white',
+    backgroundSize: '100%',
+  },
+  content: { }
 }));
 
 const App: React.FC = () => {
@@ -50,15 +51,17 @@ const App: React.FC = () => {
       <MuiThemeProvider theme={customTheme}>
         <Box height="100%" className={classes.root}>
           <Header />
-          <Route exact path="/" title="Teste" component={Home}/>
-          <Route path="/donations" component={Donations} />
-          <Route path="/donationIntentionCreation" component={DonationIntentionForm as any} />
-          <Route path="/donationIntentions" component={DonationIntentions} />
-          <Route path="/donationNeedCreation" component={DonationNeedForm as any} />
-          <Route path="/donationNeedEdition/:id" component={DonationNeedForm as any} />
-          <Route path="/donationIntentions/donation{id}" component={DonationDetail} />
-          <Route path="/donationsNeeds" component={DonationNeeds as any} />
-          <Route path="/stock" component={Stock as any} />
+          <Box className={classes.content}>
+            <Route exact path="/" title="Teste" component={Home}/>
+            <Route path="/donations" component={Donations} />
+            <Route path="/donationIntentionCreation" component={DonationIntentionForm as any} />
+            <Route path="/donationIntentions" component={DonationIntentions} />
+            <Route path="/donationNeedCreation" component={DonationNeedForm as any} />
+            <Route path="/donationNeedEdition/:id" component={DonationNeedForm as any} />
+            <Route path="/donationIntentions/donation{id}" component={DonationDetail} />
+            <Route path="/donationsNeeds" component={DonationNeeds as any} />
+            <Route path="/stock" component={Stock as any} />
+          </Box>
         </Box>
       </MuiThemeProvider>
     </BrowserRouter>
