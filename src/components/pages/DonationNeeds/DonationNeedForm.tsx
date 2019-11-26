@@ -109,6 +109,7 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
       <Typography variant="h5" component="h2">
         Cadastro de Necessidade de Doação
       </Typography>
+      <br/>
       <form onSubmit={handleSubmit}>
         <FormControl>
           <InputLabel id="idDonationItemSelectLabel">Item</InputLabel>
