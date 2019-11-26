@@ -13,21 +13,20 @@ import OpenInBrowserIcon from '@material-ui/icons/OpenInBrowser';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import AddIcon from '@material-ui/icons/Add';
 import { Grid, makeStyles, Paper, Card, CardActionArea, CardMedia, CardContent, Typography, Button, CardActions, Icon } from '@material-ui/core';
+import backgroundImage from '../../../images/background.jpg'
 
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(4),
-    flexGrow: 1,
+    flexGrow: 1
+    // backgroundImage: `url(${backgroundImage})`,
   },
   control: {
     padding: theme.spacing(4),
   },
   card: {
     maxWidth: 345,
-    // height: 300,
     minWidth: 300,
-  },
-  media: {
   },
   cardContent: {
     "text-align": "center"
