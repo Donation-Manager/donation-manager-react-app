@@ -207,28 +207,6 @@ const Home: React.FC = () => {
                   </Card>
                 </Link>
               </Grid>
-              <Grid key={2} item>
-                <Link className={classes.link}  to="/donations">
-                  <Card className={classes.card}>
-                    <CardActionArea className={classes.cardContent}>
-                    <InsertEmoticonIcon color="primary" className={classes.icon}/>
-                    <CardContent>
-                        <Typography className={classes.title} gutterBottom variant="h5" component="h2">
-                          Doações
-                        </Typography>
-                        {/* <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
-                          Descrição
-                        </Typography> */}
-                      </CardContent>
-                    </CardActionArea>
-                    {/* <CardActions>
-                      <Button size="small" color="primary">
-                        Saber mais
-                      </Button>
-                    </CardActions> */}
-                  </Card>
-                </Link>
-              </Grid>
               <Grid key={3} item>
                 <Link className={classes.link}  to="/donationsNeeds">
                   <Card className={classes.card}>
