@@ -34,6 +34,8 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import { StockItemMessage } from '../../messages/StockItemMessage';
 import { Button } from '@material-ui/core';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import ThumbDownIcon from '@material-ui/icons/ThumbDown';
+
 
 const tableIcons : Icons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -65,7 +67,7 @@ const DonationIntentionsList: React.FC = () => {
   const [state, setState] = React.useState<TableState>({
     columns: [
       { title: 'Coletar no endereço do doador', field: 'collectFromGiver', type: 'boolean' },
-      { title: 'Data de coleta', field: 'collectDate', type: 'date' },
+      { title: 'Data de coleta', field: 'collectDate', type: 'date'},
       { title: 'Descrição', field: 'description' },
       { title: 'Doador', field: 'giver' },
       { title: 'Item', field: 'item' },
@@ -123,10 +125,32 @@ const DonationIntentionsList: React.FC = () => {
         {
           icon: ThumbUpIcon as any,
           tooltip: 'Aceitar Intenção',
-          onClick: (event, rowData) => {
-            // Do save operation
-            console.log(rowData);
-            DonationIntentionService.acceptIntention(rowData);
+          onClick: async (event, rowData) => {
+            // eslint-disable-next-line no-restricted-globals
+            if (confirm('Tem certeza que deseja aprovar a doação?')) {
+              try {
+                await DonationIntentionService.acceptIntention(rowData);
+                alert("Doação aprovada com sucesso.");
+              } catch(e) {
+                alert("Erro ao aprovar a doação.");
+              }
+            }
+          }
+        },
+        {
+          icon: ThumbDownIcon as any,
+          tooltip: 'Rejeitar Intenção',
+          onClick: async (event, rowData) => {
+            // eslint-disable-next-line no-restricted-globals
+            if (confirm('Tem certeza que deseja rejeitar a doação?')) {
+              try {
+                await DonationIntentionService.rejectIntention(rowData);
+                alert("Doação rejeitada com sucesso.");
+              } catch(e) {
+                alert("Erro ao rejeitar a doação.");
+              }
+              fetchAllDonationIntetions();
+            }
           }
         }
       ]}
