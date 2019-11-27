@@ -137,7 +137,6 @@ const StockList: React.FC<RouteComponentProps> = (props, context) => {
       }}
       localization={{
         pagination: {
-            labelDisplayedRows: '{from}-{to} of {count}'
         },
         toolbar: {
             searchPlaceholder: "Buscar"
@@ -146,7 +145,15 @@ const StockList: React.FC<RouteComponentProps> = (props, context) => {
             actions: 'Ações'
         },
         body: {
+            addTooltip: "Novo Item",
             emptyDataSourceMessage: 'Nenhum dado para exibir.',
+            deleteTooltip: "Deletar",
+            editTooltip: "Editar",
+            editRow: {
+              deleteText: "Tem certeza que deseja deletar?",
+              cancelTooltip: "Cancelar",
+              saveTooltip: "Salvar"
+            }
         }
       }}
     />

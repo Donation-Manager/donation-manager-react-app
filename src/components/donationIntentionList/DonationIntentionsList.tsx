@@ -134,6 +134,7 @@ const DonationIntentionsList: React.FC = () => {
               } catch(e) {
                 alert("Erro ao aprovar a doação.");
               }
+              fetchAllDonationIntetions();
             }
           }
         },
