@@ -1,4 +1,5 @@
 import '@material/list/dist/mdc.list.css';
+import './DonationList.css';
 import React, { useState, useEffect, forwardRef } from 'react';
 import { List, ListItem, ListItemGraphic, ListItemText, ListItemPrimaryText, ListItemSecondaryText, ListItemMeta } from '@rmwc/list';
 import { Donation } from '../../models/Donation';
@@ -106,7 +107,7 @@ const DonationsList: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className="MaterialTable-div">
       <MaterialTable
       options={{
         paging: false

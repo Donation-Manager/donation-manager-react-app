@@ -1,3 +1,4 @@
+import './StockList.css';
 import React, { useState, useEffect, forwardRef } from 'react';
 import { StockItem } from '../../models/StockItem';
 import { StockItemService } from '../../services/StockItemService';
@@ -114,7 +115,7 @@ const StockList: React.FC<RouteComponentProps> = (props, context) => {
   }, [ ]);
 
   return (
-    <div>
+    <div className="StockList-div">
       <MaterialTable
       options={{
         paging: false
