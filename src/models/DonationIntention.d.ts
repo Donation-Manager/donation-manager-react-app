@@ -9,4 +9,5 @@ export interface DonationIntention {
   giver: Giver;
   donationNeed: DonationNeed;
   quantity: number;
+  approved: boolean;
 }
