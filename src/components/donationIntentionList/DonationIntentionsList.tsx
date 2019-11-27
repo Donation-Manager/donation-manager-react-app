@@ -116,7 +116,7 @@ const DonationIntentionsList: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className="DonationIntentionsList-div">
       <MaterialTable
       options={{
         paging: false
