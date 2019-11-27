@@ -10,4 +10,7 @@ export interface DonationIntention {
   donationNeed: DonationNeed;
   quantity: number;
   approved: boolean;
+  street: string;
+  houseNumber: int;
+  city: string;
 }
