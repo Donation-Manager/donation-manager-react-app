@@ -12,6 +12,7 @@ import ListAltIcon from '@material-ui/icons/ListAlt';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import AddIcon from '@material-ui/icons/Add';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
@@ -71,7 +72,7 @@ const isManager = true;
           <Typography color="textPrimary" variant="h6" className={classes.title}>
             Donation Manager
           </Typography>
-          <Button color="default" endIcon={<VpnKeyIcon/>}>Login</Button>
+          <Button color="default" endIcon={<MeetingRoomIcon/>}>Logout</Button>
         </Toolbar>
       </AppBar>
       <Drawer
