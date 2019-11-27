@@ -1,5 +1,5 @@
 import '@material/list/dist/mdc.list.css';
-import React, { useState, useEffect, forwardRef } from 'react';
+import React, { useState, useEffect, forwardRef, ReactElement } from 'react';
 
 import { StockItem } from '../../models/StockItem';
 import { StockItemService } from '../../services/StockItemService';
@@ -32,6 +32,8 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import { StockItemMessage } from '../../messages/StockItemMessage';
+import { Button } from '@material-ui/core';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 
 const tableIcons : Icons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -64,10 +66,11 @@ const DonationIntentionsList: React.FC = () => {
     columns: [
       { title: 'Coletar no endereço do doador', field: 'collectFromGiver', type: 'boolean' },
       { title: 'Data de coleta', field: 'collectDate', type: 'string' },
-      { title: 'Descricao', field: 'description' },
+      { title: 'Descrição', field: 'description' },
       { title: 'Doador', field: 'giver' },
       { title: 'Item', field: 'item' },
-      { title: 'Quantidade', field: 'quantity' }
+      { title: 'Quantidade', field: 'quantity' },
+      { title: 'Unidade', field: 'itemUom' }
     ],
     data: [ ],
   });
@@ -97,7 +100,9 @@ const DonationIntentionsList: React.FC = () => {
           giver: donationIntention.giver.name,
           item: donationIntention.donationNeed != undefined ?
             donationIntention.donationNeed.donationItem.itemName : undefined,
-          quantity: donationIntention.quantity
+          quantity: donationIntention.quantity,
+          itemUom: donationIntention.donationNeed != undefined ?
+            donationIntention.donationNeed.donationItem.itemUOM : undefined
         }
       });
       return { ...prevState, data };
@@ -116,8 +121,8 @@ const DonationIntentionsList: React.FC = () => {
       }}
       actions={[
         {
-          icon: 'save',
-          tooltip: 'Save User',
+          icon: ThumbUpIcon as any,
+          tooltip: 'Aceitar Intenção',
           onClick: (event, rowData) => {
             // Do save operation
             console.log(rowData);
@@ -125,6 +130,20 @@ const DonationIntentionsList: React.FC = () => {
           }
         }
       ]}
+      localization={{
+        pagination: {
+            labelDisplayedRows: '{from}-{to} of {count}'
+        },
+        toolbar: {
+            searchPlaceholder: "Buscar"
+        },
+        header: {
+            actions: 'Ações'
+        },
+        body: {
+            emptyDataSourceMessage: 'Nenhum dado para exibir.',
+        }
+      }}
       icons={tableIcons}
       title="Intenções de doação"
       columns={state.columns}

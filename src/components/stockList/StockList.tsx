@@ -135,6 +135,20 @@ const StockList: React.FC<RouteComponentProps> = (props, context) => {
           return deleteStockItem(oldData.stockItemId);
         },
       }}
+      localization={{
+        pagination: {
+            labelDisplayedRows: '{from}-{to} of {count}'
+        },
+        toolbar: {
+            searchPlaceholder: "Buscar"
+        },
+        header: {
+            actions: 'Ações'
+        },
+        body: {
+            emptyDataSourceMessage: 'Nenhum dado para exibir.',
+        }
+      }}
     />
     </div>
   );
