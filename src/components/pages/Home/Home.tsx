@@ -70,9 +70,9 @@ const Home: React.FC = () => {
                       <Typography className={classes.title} gutterBottom variant="h5" component="h2">
                         Cadastro de Intenções
                       </Typography>
-                      <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
+                      {/* <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
                         Descrição
-                      </Typography>
+                      </Typography> */}
                     </CardContent>
                   </CardActionArea>
                   {/* <CardActions>
@@ -92,9 +92,9 @@ const Home: React.FC = () => {
                       <Typography className={classes.title} gutterBottom variant="h5" component="h2">
                         Intenções
                       </Typography>
-                      <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
+                      {/* <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
                         Descrição
-                      </Typography>
+                      </Typography> */}
                     </CardContent>
                   </CardActionArea>
                   {/* <CardActions>
@@ -114,9 +114,9 @@ const Home: React.FC = () => {
                       <Typography className={classes.title} gutterBottom variant="h5" component="h2">
                         Doações
                       </Typography>
-                      <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
+                      {/* <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
                         Descrição
-                      </Typography>
+                      </Typography> */}
                     </CardContent>
                   </CardActionArea>
                   {/* <CardActions>
@@ -137,9 +137,9 @@ const Home: React.FC = () => {
                       <Typography className={classes.title} gutterBottom variant="h5" component="h2">
                         Cadastro de Necessidade
                       </Typography>
-                      <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
+                      {/* <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
                         Descrição
-                      </Typography>
+                      </Typography> */}
                     </CardContent>
                   </CardActionArea>
                   {/* <CardActions>
@@ -159,9 +159,9 @@ const Home: React.FC = () => {
                       <Typography className={classes.title} gutterBottom variant="h5" component="h2">
                         Necessidades de Doações
                       </Typography>
-                      <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
+                      {/* <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
                         Descrição
-                      </Typography>
+                      </Typography> */}
                     </CardContent>
                   </CardActionArea>
                   {/* <CardActions>
@@ -181,9 +181,9 @@ const Home: React.FC = () => {
                       <Typography className={classes.title} gutterBottom variant="h5" component="h2">
                         Estoque
                       </Typography>
-                      <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
+                      {/* <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
                         Descrição
-                      </Typography>
+                      </Typography> */}
                     </CardContent>
                   </CardActionArea>
                   {/* <CardActions>
