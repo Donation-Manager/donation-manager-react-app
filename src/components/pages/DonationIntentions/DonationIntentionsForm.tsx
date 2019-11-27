@@ -19,6 +19,7 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
   const [street, setStreet] = useState<string>("");
   const [houseNumber, setHouseNumber] = useState<string>("");
   const [city, setCity] = useState<string>("");
+  const [itemName, setDonationItemName] = useState<string>("");
   const donationNeed = props.location.state && props.location.state.donation ? props.location.state.donation : undefined;
   console.log(donationNeed);
 
@@ -85,10 +86,21 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
           />
           </MuiPickersUtilsProvider>
           <TextField
+            id="idItem"
+            disabled={Boolean(donationNeed && donationNeed.donationItem)}
+            label="Item"
+            defaultValue=""
+            value={donationNeed && donationNeed.donationItem ? donationNeed.donationItem.itemName : itemName }
+            margin="normal"
+            type="text"
+            onChange={e => setDonationItemName(e.target.value)}
+          />
+          <TextField
             id="idQuantity"
             label="Quantidade"
             defaultValue="0"
             value={quantity}
+            helperText={donationNeed && donationNeed.donationItem ? donationNeed.donationItem.itemUOM : "" }
             margin="normal"
             type="number"
             onChange={e => setQuantity(Number(e.target.value))}
