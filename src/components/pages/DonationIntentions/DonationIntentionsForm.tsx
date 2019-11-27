@@ -19,7 +19,7 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
   const [street, setStreet] = useState<string>("");
   const [houseNumber, setHouseNumber] = useState<string>("");
   const [city, setCity] = useState<string>("");
-  const donationNeed = props.location.state.donation;
+  const donationNeed = props.location.state && props.location.state.donation ? props.location.state.donation : undefined;
   console.log(donationNeed);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
