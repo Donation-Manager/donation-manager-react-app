@@ -65,7 +65,7 @@ const DonationIntentionsList: React.FC = () => {
   const [state, setState] = React.useState<TableState>({
     columns: [
       { title: 'Coletar no endereço do doador', field: 'collectFromGiver', type: 'boolean' },
-      { title: 'Data de coleta', field: 'collectDate', type: 'string' },
+      { title: 'Data de coleta', field: 'collectDate', type: 'date' },
       { title: 'Descrição', field: 'description' },
       { title: 'Doador', field: 'giver' },
       { title: 'Item', field: 'item' },
@@ -95,7 +95,7 @@ const DonationIntentionsList: React.FC = () => {
         return {
           _id: donationIntention._id,
           collectFromGiver: donationIntention.collectFromGiver,
-          collectDate: donationIntention.collectDate,
+          collectDate: new Date(donationIntention.collectDate),
           description: donationIntention.description,
           giver: donationIntention.giver.name,
           item: donationIntention.donationNeed != undefined ?
