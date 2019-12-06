@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '@rmwc/icon/icon.css';
+import './Home.css';
 import { GridList, GridTile, GridTilePrimary, GridTileTitle, GridTileSecondary } from '@rmwc/grid-list';
 import '@material/grid-list/dist/mdc.grid-list.css';
 import '@material/typography/dist/mdc.typography.css';
@@ -14,6 +15,7 @@ import backgroundImage from '../../../images/background.jpg'
 
 const useStyles = makeStyles(theme => ({
   root: {
+    height: '100%',
     padding: theme.spacing(8),
     margin: 0,
     backgroundColor: 'transparent',
@@ -28,11 +30,15 @@ const useStyles = makeStyles(theme => ({
     minWidth: 250
   },
   cardContent: {
+    height: '100%',
     fontSize: 10,
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
     textDecoration: 'none',
     textAlign: "center"
+  },
+  cardContentClass: {
+    height: '100% !important'
   },
   icon: {
     fontSize: 130
@@ -49,6 +55,12 @@ const useStyles = makeStyles(theme => ({
   },
   description: {
     fontSize: 13
+  },
+  item: {
+    height: '100%'
+  },
+  gridContainer: {
+    height: '100%'
   }
 }));
 
@@ -59,15 +71,15 @@ const Home: React.FC = () => {
   if (isManager) {
   return (
     <Box className={classes.root}>
-      <Grid container spacing={2} alignItems="center" >
+      <Grid className="grid-container-spacing2" container spacing={2} alignItems="center">
         <Grid item xs={12} >
           <Grid container justify="center" spacing={2}>
-            <Grid key={1} item>
+            <Grid key={1} item className={classes.item}>
               <Link className={classes.link}  to="/donationIntentions">
                 <Card className={classes.card}>
                   <CardActionArea className={classes.cardContent}>
                     <FavoriteBorder color="primary" className={classes.icon}/>
-                    <CardContent>
+                    <CardContent className={classes.cardContentClass}>
                       <Typography className={classes.title} gutterBottom variant="h5" component="h2">
                         Intenções
                       </Typography>
