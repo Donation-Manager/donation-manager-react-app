@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
   },
   link: {
     textDecoration: 'none'
@@ -86,6 +86,7 @@ const isManager = true;
         }}
       >
         <div className={classes.drawerHeader}>
+          <h3 className="mdc-drawer__title">Menu</h3>
           <IconButton onClick={handleMenuClose}>
             {menuState ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
