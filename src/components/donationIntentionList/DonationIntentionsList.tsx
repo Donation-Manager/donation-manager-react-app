@@ -145,7 +145,7 @@ const DonationIntentionsList: React.FC = () => {
           tooltip: 'Rejeitar Intenção',
           onClick: async (event, rowData) => {
             // eslint-disable-next-line no-restricted-globals
-            if (confirm('Tem certeza que deseja rejeitar a doação?')) {
+            if ( prompt('Por favor, insira o motivo de rejeição da doação')) {
               try {
                 await DonationIntentionService.rejectIntention(rowData);
                 alert("Doação rejeitada com sucesso.");
