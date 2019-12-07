@@ -140,7 +140,7 @@ const DonationsList: React.FC = () => {
             />
           }
           value="filterRecivedDonation"
-          label="Coletar no endereço do doador"
+          label="Apenas doações pendentes"
         />
       </div>
     </div>
