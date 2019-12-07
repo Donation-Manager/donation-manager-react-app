@@ -30,6 +30,7 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import { StockItemMessage } from '../../messages/StockItemMessage';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 
 const tableIcons : Icons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -118,6 +119,15 @@ const DonationsList: React.FC = () => {
       title="Doações a receber"
       columns={state.columns}
       data={state.data}
+      actions={[
+        {
+          icon: ThumbUpIcon as any,
+          tooltip: 'Doação recebida',
+          onClick: async (event, rowData) => {
+            console.log("Implementar");
+          }
+        }]
+      }
     />
     </div>
   );
