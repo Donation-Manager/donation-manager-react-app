@@ -59,8 +59,9 @@ interface TableState {
 }
 
 const DonationsList: React.FC = () => {
-  const [filterRecivedDonation, setFilterRecivedDonation] = useState<boolean>(false);
+  const [filterPendingDonation, setFilterPendingDonation] = useState<boolean>(false);
   const [donationIntentions, setDonationIntentions] = useState<DonationIntention[]>([]);
+  const [allDonations, setAllDonations] = React.useState<any[]>([]);
   const [state, setState] = React.useState<TableState>({
     columns: [
       { title: 'Coletar no endereço do doador', field: 'collectFromGiver', type: 'boolean' },
@@ -103,6 +104,7 @@ const DonationsList: React.FC = () => {
           address: donationIntention.collectFromGiver && donationIntention.street !== undefined ? donationIntention.street + ', ' + donationIntention.houseNumber + ', ' + donationIntention.city : ''
         }
       });
+      setAllDonations(data);
       return { ...prevState, data };
     });
   }
@@ -110,6 +112,14 @@ const DonationsList: React.FC = () => {
   useEffect(() => {
     fetchAllDonationIntetions();
   }, []);
+
+  function filterByPendingDonation(onlyPendingDonations: boolean) {
+    setState((prevState) => {
+      const data = onlyPendingDonations ? allDonations.filter((donationIntention) => donationIntention.collectFromGiver) : allDonations;
+      return { ...prevState, data };
+    });
+    setFilterPendingDonation(onlyPendingDonations);
+  };
 
   return (
     <div className="MaterialTable-div">
@@ -135,8 +145,8 @@ const DonationsList: React.FC = () => {
         <FormControlLabel
           control={
             <Checkbox color="primary"
-              checked={filterRecivedDonation}
-              onChange={e => setFilterRecivedDonation(Boolean(e.target.checked))}
+              checked={filterPendingDonation}
+              onChange={e => filterByPendingDonation(Boolean(e.target.checked))}
             />
           }
           value="filterRecivedDonation"
