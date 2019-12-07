@@ -31,6 +31,7 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import { StockItemMessage } from '../../messages/StockItemMessage';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import { FormControlLabel, Checkbox } from '@material-ui/core';
 
 const tableIcons : Icons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -58,6 +59,7 @@ interface TableState {
 }
 
 const DonationsList: React.FC = () => {
+  const [filterRecivedDonation, setFilterRecivedDonation] = useState<boolean>(false);
   const [donationIntentions, setDonationIntentions] = useState<DonationIntention[]>([]);
   const [state, setState] = React.useState<TableState>({
     columns: [
@@ -112,23 +114,35 @@ const DonationsList: React.FC = () => {
   return (
     <div className="MaterialTable-div">
       <MaterialTable
-      options={{
-        paging: false
-      }}
-      icons={tableIcons}
-      title="Doações a receber"
-      columns={state.columns}
-      data={state.data}
-      actions={[
-        {
-          icon: ThumbUpIcon as any,
-          tooltip: 'Doação recebida',
-          onClick: async (event, rowData) => {
-            console.log("Implementar");
+        options={{
+          paging: false
+        }}
+        icons={tableIcons}
+        title="Doações a receber"
+        columns={state.columns}
+        data={state.data}
+        actions={[
+          {
+            icon: ThumbUpIcon as any,
+            tooltip: 'Doação recebida',
+            onClick: async (event, rowData) => {
+              console.log("Implementar");
+            }
+          }]
+        }
+      />
+      <div className="filterByRecivedDonation">
+        <FormControlLabel
+          control={
+            <Checkbox color="primary"
+              checked={filterRecivedDonation}
+              onChange={e => setFilterRecivedDonation(Boolean(e.target.checked))}
+            />
           }
-        }]
-      }
-    />
+          value="filterRecivedDonation"
+          label="Coletar no endereço do doador"
+        />
+      </div>
     </div>
   );
 }
