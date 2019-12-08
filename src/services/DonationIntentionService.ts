@@ -7,7 +7,8 @@ enum DonationIntentionRoute {
   CreateDonationIntention = "/createDonationIntention",
   AcceptDonation = "/acceptDonation",
   RejectDonation = "/rejectDonation",
-  GetApprovedDonations = "/approvedDonationsIntentions"
+  GetApprovedDonations = "/approvedDonationsIntentions",
+  ReceiveDonation = "/receiveDonation"
 }
 
 export class DonationIntentionService {
@@ -35,6 +36,15 @@ export class DonationIntentionService {
     const response = await Axios.post(BackendURI + DonationIntentionRoute.RejectDonation, donationIntention, {
       params: {
         intentionId: donationIntention._id
+      }
+    });
+    return response.data;
+  }
+
+  public static async receiveDonation(donation: any): Promise<any> {
+    const response = await Axios.post(BackendURI + DonationIntentionRoute.ReceiveDonation, donation, {
+      params: {
+        donationId: donation._id
       }
     });
     return response.data;

@@ -14,4 +14,5 @@ export interface DonationIntention {
   street: string;
   houseNumber: int;
   city: string;
+  received: boolean;
 }

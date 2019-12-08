@@ -64,6 +64,7 @@ const DonationsList: React.FC = () => {
   const [allDonations, setAllDonations] = React.useState<any[]>([]);
   const [state, setState] = React.useState<TableState>({
     columns: [
+      { title: 'Doação já recebida', field: 'received', type: 'boolean' },
       { title: 'Coletar no endereço do doador', field: 'collectFromGiver', type: 'boolean' },
       { title: 'Endereço', field: 'address' },
       { title: 'Data de coleta', field: 'collectDate', type: 'date' },
@@ -103,7 +104,8 @@ const DonationsList: React.FC = () => {
           item: donationIntention.donationNeed != undefined ?
             donationIntention.donationNeed.donationItem.itemName : undefined,
           quantity: donationIntention.quantity,
-          address: donationIntention.collectFromGiver && donationIntention.street !== undefined ? donationIntention.street + ', ' + donationIntention.houseNumber + ', ' + donationIntention.city : ''
+          address: donationIntention.collectFromGiver && donationIntention.street !== undefined ? donationIntention.street + ', ' + donationIntention.houseNumber + ', ' + donationIntention.city : '',
+          received: donationIntention.received !== undefined && donationIntention.received !== null ? donationIntention.received : false
         }
       });
       setAllDonations(data);
@@ -132,7 +134,7 @@ const DonationsList: React.FC = () => {
 
   function filterByPendingDonation(onlyPendingDonations: boolean) {
     setState((prevState) => {
-      const data = onlyPendingDonations ? allDonations.filter((donationIntention) => donationIntention.collectFromGiver) : allDonations;
+      const data = onlyPendingDonations ? allDonations.filter((donationIntention) => !donationIntention.received) : allDonations;
       return { ...prevState, data };
     });
     setFilterPendingDonation(onlyPendingDonations);
@@ -153,7 +155,21 @@ const DonationsList: React.FC = () => {
             icon: ThumbUpIcon as any,
             tooltip: 'Doação recebida',
             onClick: async (event, rowData) => {
-              console.log("Implementar");
+              console.log(rowData);
+              if (rowData.received) {
+                alert('Esta doação já foi recebida pelo lar');
+                return;
+              }
+              // eslint-disable-next-line no-restricted-globals
+              if (confirm('Tem certeza que a doação foi recebida pelo lar?')) {
+                try {
+                  await DonationIntentionService.receiveDonation(rowData);
+                  alert("Doação recebida com sucesso.");
+                } catch(e) {
+                  alert("Erro ao marcar doação como recebida a doação.");
+                }
+                fetchAllDonationIntetions();
+              }
             }
           }]
         }
