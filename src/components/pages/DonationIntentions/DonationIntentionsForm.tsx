@@ -6,7 +6,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { UserService } from '../../../services/UserService';
 import { GiverService } from '../../../services/GiverService';
 import { FormControl, InputLabel, FormControlLabel, Checkbox, TextField, Button, Typography, Grid, FormGroup, Divider, Box } from '@material-ui/core';
-import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import { KeyboardDatePicker, KeyboardTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
@@ -14,6 +14,7 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
 
   const [collectFromGiver, setCollectFromGiver] = useState<boolean>(false);
   const [collectDate, setCollectDate] = useState<string>(new Date().toDateString());
+  const [collectHour, setCollectHour] = useState<Date>(new Date());
   const [description, setDescription] = useState<string>("");
   const [quantity, setQuantity] = useState<number>();
   const [street, setStreet] = useState<string>("");
@@ -31,6 +32,7 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
     const data = {
       collectFromGiver,
       collectDate,
+      collectHour,
       description,
       quantity,
       street,
@@ -52,6 +54,12 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
     const { history } = props;
     if(history) {
       history.push("/donationIntentions");
+    }
+  }
+
+  const handleTimeChange = (hour: any) => {
+    if (hour) {
+      setCollectHour(hour);
     }
   }
 
@@ -79,10 +87,18 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
             label="Data da Coleta"
             clearable
             value={collectDate}
-            placeholder="10/10/2018"
+            placeholder="02/02/2020"
             onChange={date => { if(date) {setCollectDate((date as Date).toDateString())} }}
             minDate={new Date()}
             format="dd/MM/yyyy"
+            />
+            </MuiPickersUtilsProvider>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <KeyboardTimePicker
+          margin="normal"
+          label="Horário da Coleta"
+          value={collectHour}
+          onChange={handleTimeChange}
           />
           </MuiPickersUtilsProvider>
           <TextField
