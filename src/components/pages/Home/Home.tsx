@@ -15,8 +15,8 @@ import backgroundImage from '../../../images/background.jpg'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: '100%',
-    padding: theme.spacing(8),
+    height: '-webkit-fill-available',
+    padding: '64px 64px 0 64px',
     margin: 0,
     backgroundColor: 'transparent',
     backgroundImage: `url(${backgroundImage})`,
@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
     minWidth: 250
   },
   cardContent: {
-    height: '100%',
+    height: '-webkit-fill-available',
     fontSize: 10,
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
@@ -57,10 +57,10 @@ const useStyles = makeStyles(theme => ({
     fontSize: 13
   },
   item: {
-    height: '100%'
+    height: '-webkit-fill-available'
   },
   gridContainer: {
-    height: '100%'
+    height: '-webkit-fill-available'
   }
 }));
 

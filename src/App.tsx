@@ -38,10 +38,11 @@ const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: 'white',
     backgroundSize: '100%',
-    height: '100%'
+    height: '100%',
+    overflow: 'hidden'
   },
   content: {
-    height: '100%'
+    height: '-webkit-fill-available'
   }
 }));
 
@@ -51,7 +52,7 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <MuiThemeProvider theme={customTheme}>
-        <Box height="100%" className={classes.root}>
+        <Box height="-webkit-fill-available" className={classes.root}>
           <Header />
           <Box className={classes.content}>
             <Route exact path="/" title="Teste" component={Home}/>
