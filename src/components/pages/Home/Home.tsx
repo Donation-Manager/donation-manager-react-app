@@ -64,7 +64,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const isManager = false;
+const isManager = true;
 
 const Home: React.FC = () => {
   const classes = useStyles();

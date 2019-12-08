@@ -67,6 +67,7 @@ const DonationsList: React.FC = () => {
       { title: 'Coletar no endereço do doador', field: 'collectFromGiver', type: 'boolean' },
       { title: 'Endereço', field: 'address' },
       { title: 'Data de coleta', field: 'collectDate', type: 'date' },
+      { title: 'Horário de coleta', field: 'collectHour', type: 'date' },
       { title: 'Descricao', field: 'description' },
       { title: 'Doador', field: 'giver' },
       { title: 'Item', field: 'item' },
@@ -96,6 +97,7 @@ const DonationsList: React.FC = () => {
           _id: donationIntention._id,
           collectFromGiver: donationIntention.collectFromGiver,
           collectDate: new Date(donationIntention.collectDate),
+          collectHour: formatDonationCollectHour(donationIntention.collectHour),
           description: donationIntention.description,
           giver: donationIntention.giver.name,
           item: donationIntention.donationNeed != undefined ?
@@ -107,6 +109,21 @@ const DonationsList: React.FC = () => {
       setAllDonations(data);
       return { ...prevState, data };
     });
+  }
+
+  function formatDonationCollectHour(hour: any): string {
+    if (hour) {
+      const date = new Date(hour)
+      let hours = date.getHours();
+      let minutes: any = date.getMinutes();
+      let ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // the hour '0' should be '12'
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      let strTime = hours + ':' + minutes + ' ' + ampm;
+      return strTime;
+    }
+    return "";
   }
 
   useEffect(() => {

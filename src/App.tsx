@@ -38,8 +38,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: 'white',
     backgroundSize: '100%',
-    height: '100%',
-    overflow: 'hidden'
+    height: '100%'
   },
   content: {
     height: '-webkit-fill-available'
