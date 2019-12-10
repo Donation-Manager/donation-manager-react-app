@@ -10,6 +10,7 @@ import DonationDetail from './components/donationDetail/DonationDetail';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Stock from './components/pages/Stock/Stock';
 import { createMuiTheme, MuiThemeProvider, makeStyles, Box } from '@material-ui/core';
+import backgroundImage from './images/background.jpg'
 
 export interface Props {
   pageTitle: string
@@ -36,12 +37,8 @@ const customTheme = createMuiTheme({
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: 'white',
-    backgroundSize: '100%',
-    height: '100%'
   },
   content: {
-    height: '-webkit-fill-available'
   }
 }));
 
@@ -51,7 +48,7 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <MuiThemeProvider theme={customTheme}>
-        <Box height="-webkit-fill-available" className={classes.root}>
+        <Box className={classes.root}>
           <Header />
           <Box className={classes.content}>
             <Route exact path="/" title="Teste" component={Home}/>

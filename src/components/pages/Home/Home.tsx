@@ -15,8 +15,7 @@ import backgroundImage from '../../../images/background.jpg'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: '-webkit-fill-available',
-    padding: '64px 64px 0 64px',
+    padding: theme.spacing(8),
     margin: 0,
     backgroundColor: 'transparent',
     backgroundImage: `url(${backgroundImage})`,
@@ -30,7 +29,6 @@ const useStyles = makeStyles(theme => ({
     minWidth: 250
   },
   cardContent: {
-    height: '-webkit-fill-available',
     fontSize: 10,
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
@@ -55,12 +53,6 @@ const useStyles = makeStyles(theme => ({
   },
   description: {
     fontSize: 13
-  },
-  item: {
-    height: '-webkit-fill-available'
-  },
-  gridContainer: {
-    height: '-webkit-fill-available'
   }
 }));
 
@@ -71,121 +63,77 @@ const Home: React.FC = () => {
   if (isManager) {
   return (
     <Box className={classes.root}>
-      <Grid className="grid-container-spacing2" container spacing={2} alignItems="center">
-        <Grid item xs={12} >
-          <Grid container justify="center" spacing={2}>
-            <Grid key={1} item className={classes.item}>
-              <Link className={classes.link}  to="/donationIntentions">
-                <Card className={classes.card}>
-                  <CardActionArea className={classes.cardContent}>
-                    <FavoriteBorder color="primary" className={classes.icon}/>
-                    <CardContent className={classes.cardContentClass}>
-                      <Typography className={classes.title} gutterBottom variant="h5" component="h2">
-                        Intenções
-                      </Typography>
-                      {/* <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
-                        Descrição
-                      </Typography> */}
-                    </CardContent>
-                  </CardActionArea>
-                  {/* <CardActions>
-                    <Button size="small" color="primary">
-                      Saber mais
-                    </Button>
-                  </CardActions> */}
-                </Card>
-              </Link>
-            </Grid>
-            <Grid key={2} item>
-              <Link className={classes.link}  to="/donations">
-                <Card className={classes.card}>
-                  <CardActionArea className={classes.cardContent}>
-                  <InsertEmoticonIcon color="primary" className={classes.icon}/>
-                  <CardContent>
-                      <Typography className={classes.title} gutterBottom variant="h5" component="h2">
-                        Doações
-                      </Typography>
-                      {/* <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
-                        Descrição
-                      </Typography> */}
-                    </CardContent>
-                  </CardActionArea>
-                  {/* <CardActions>
-                    <Button size="small" color="primary">
-                      Saber mais
-                    </Button>
-                  </CardActions> */}
-                </Card>
-              </Link>
-            </Grid>
-            <Grid key={4} item>
-              <Link className={classes.link}  to="/donationNeedCreation">
-                <Card className={classes.card}>
-                  <CardActionArea className={classes.cardContent}>
-                    <EmojiPeopleIcon color="primary" className={classes.icon}/>
-                    <AddIcon color="primary" className={classes.addIcon}/>
-                    <CardContent>
-                      <Typography className={classes.title} gutterBottom variant="h5" component="h2">
-                        Cadastro de Necessidade
-                      </Typography>
-                      {/* <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
-                        Descrição
-                      </Typography> */}
-                    </CardContent>
-                  </CardActionArea>
-                  {/* <CardActions>
-                    <Button size="small" color="primary">
-                      Saber mais
-                    </Button>
-                  </CardActions> */}
-                </Card>
-              </Link>
-            </Grid>
-            <Grid key={3} item>
-              <Link className={classes.link}  to="/donationsNeeds">
-                <Card className={classes.card}>
-                  <CardActionArea className={classes.cardContent}>
-                  <EmojiPeopleIcon color="primary" className={classes.icon}/>
-                    <CardContent>
-                      <Typography className={classes.title} gutterBottom variant="h5" component="h2">
-                        Necessidades de Doações
-                      </Typography>
-                      {/* <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
-                        Descrição
-                      </Typography> */}
-                    </CardContent>
-                  </CardActionArea>
-                  {/* <CardActions>
-                    <Button size="small" color="primary">
-                      Saber mais
-                    </Button>
-                  </CardActions> */}
-                </Card>
-              </Link>
-            </Grid>
-            <Grid key={4} item>
-              <Link className={classes.link}  to="/stock">
-                <Card className={classes.card}>
-                  <CardActionArea className={classes.cardContent}>
-                    <ListAltIcon color="primary" className={classes.icon}/>
-                    <CardContent>
-                      <Typography className={classes.title} gutterBottom variant="h5" component="h2">
-                        Estoque
-                      </Typography>
-                      {/* <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
-                        Descrição
-                      </Typography> */}
-                    </CardContent>
-                  </CardActionArea>
-                  {/* <CardActions>
-                    <Button size="small" color="primary">
-                      Saber mais
-                    </Button>
-                  </CardActions> */}
-                </Card>
-              </Link>
-            </Grid>
-          </Grid>
+      <Grid container justify="center" spacing={2}>
+        <Grid key={1} item>
+          <Link className={classes.link}  to="/donationIntentions">
+            <Card className={classes.card}>
+              <CardActionArea className={classes.cardContent}>
+                <FavoriteBorder color="primary" className={classes.icon}/>
+                <CardContent className={classes.cardContentClass}>
+                  <Typography className={classes.title} gutterBottom variant="h5" component="h2">
+                    Intenções
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Link>
+        </Grid>
+        <Grid key={2} item>
+          <Link className={classes.link}  to="/donations">
+            <Card className={classes.card}>
+              <CardActionArea className={classes.cardContent}>
+              <InsertEmoticonIcon color="primary" className={classes.icon}/>
+              <CardContent>
+                  <Typography className={classes.title} gutterBottom variant="h5" component="h2">
+                    Doações
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Link>
+        </Grid>
+        <Grid key={4} item>
+          <Link className={classes.link}  to="/donationNeedCreation">
+            <Card className={classes.card}>
+              <CardActionArea className={classes.cardContent}>
+                <EmojiPeopleIcon color="primary" className={classes.icon}/>
+                <AddIcon color="primary" className={classes.addIcon}/>
+                <CardContent>
+                  <Typography className={classes.title} gutterBottom variant="h5" component="h2">
+                    Cadastro de Necessidade
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Link>
+        </Grid>
+        <Grid key={3} item>
+          <Link className={classes.link}  to="/donationsNeeds">
+            <Card className={classes.card}>
+              <CardActionArea className={classes.cardContent}>
+              <EmojiPeopleIcon color="primary" className={classes.icon}/>
+                <CardContent>
+                  <Typography className={classes.title} gutterBottom variant="h5" component="h2">
+                    Necessidades de Doações
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Link>
+        </Grid>
+        <Grid key={4} item>
+          <Link className={classes.link}  to="/stock">
+            <Card className={classes.card}>
+              <CardActionArea className={classes.cardContent}>
+                <ListAltIcon color="primary" className={classes.icon}/>
+                <CardContent>
+                  <Typography className={classes.title} gutterBottom variant="h5" component="h2">
+                    Estoque
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Link>
         </Grid>
       </Grid>
     </Box>
@@ -193,55 +141,35 @@ const Home: React.FC = () => {
   } else {
     return (
       <Box className={classes.root}>
-        <Grid container spacing={2} alignItems="center" >
-          <Grid item xs={12} >
-            <Grid container justify="center" spacing={2}>
-              <Grid key={0} item>
-                <Link className={classes.link} to="/donationIntentionCreation">
-                  <Card className={classes.card}>
-                    <CardActionArea className={classes.cardContent}>
-                      <FavoriteBorder color="primary" className={classes.icon}/>
-                      <AddIcon color="primary" className={classes.addIcon}/>
-                      <CardContent>
-                        <Typography className={classes.title} gutterBottom variant="h5" component="h2">
-                          Cadastro de Intenções
-                        </Typography>
-                        {/* <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
-                          Descrição
-                        </Typography> */}
-                      </CardContent>
-                    </CardActionArea>
-                    {/* <CardActions>
-                      <Button size="small" color="primary">
-                        Saber mais
-                      </Button>
-                    </CardActions> */}
-                  </Card>
-                </Link>
-              </Grid>
-              <Grid key={3} item>
-                <Link className={classes.link}  to="/donationsNeeds">
-                  <Card className={classes.card}>
-                    <CardActionArea className={classes.cardContent}>
-                    <EmojiPeopleIcon color="primary" className={classes.icon}/>
-                      <CardContent>
-                        <Typography className={classes.title} gutterBottom variant="h5" component="h2">
-                          Necessidades de Doações
-                        </Typography>
-                        {/* <Typography className={classes.description} variant="body2" color="textSecondary" component="p">
-                          Descrição
-                        </Typography> */}
-                      </CardContent>
-                    </CardActionArea>
-                    {/* <CardActions>
-                      <Button size="small" color="primary">
-                        Saber mais
-                      </Button>
-                    </CardActions> */}
-                  </Card>
-                </Link>
-              </Grid>
-            </Grid>
+        <Grid container justify="center" spacing={2}>
+          <Grid key={0} item>
+            <Link className={classes.link} to="/donationIntentionCreation">
+              <Card className={classes.card}>
+                <CardActionArea className={classes.cardContent}>
+                  <FavoriteBorder color="primary" className={classes.icon}/>
+                  <AddIcon color="primary" className={classes.addIcon}/>
+                  <CardContent>
+                    <Typography className={classes.title} gutterBottom variant="h5" component="h2">
+                      Cadastro de Intenções
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Link>
+          </Grid>
+          <Grid key={3} item>
+            <Link className={classes.link}  to="/donationsNeeds">
+              <Card className={classes.card}>
+                <CardActionArea className={classes.cardContent}>
+                <EmojiPeopleIcon color="primary" className={classes.icon}/>
+                  <CardContent>
+                    <Typography className={classes.title} gutterBottom variant="h5" component="h2">
+                      Necessidades de Doações
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Link>
           </Grid>
         </Grid>
       </Box>
