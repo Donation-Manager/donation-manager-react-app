@@ -1,5 +1,6 @@
 import React, { FormEvent, useState, InputHTMLAttributes, useEffect } from 'react';
 import '@material/form-field/dist/mdc.form-field.css';
+import './DonationNeedForm.css';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { DonationNeedMessage } from '../../../messages/DonationNeedMessage';
 import { DonationNeedService } from '../../../services/DonationNeedService';
@@ -110,7 +111,7 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
         Cadastro de Necessidade de Doação
       </Typography>
       <br/>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="DonationNeedForm-Form">
         <FormControl>
           <InputLabel id="idDonationItemSelectLabel">Item</InputLabel>
           <Select

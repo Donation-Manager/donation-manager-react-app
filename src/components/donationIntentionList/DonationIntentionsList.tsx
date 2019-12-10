@@ -118,7 +118,7 @@ const DonationIntentionsList: React.FC = () => {
           collectHour: formatDonationCollectHour(donationIntention.collectHour),
           description: donationIntention.description,
           giver: donationIntention.giver.name,
-          item: donationIntention.donationNeed != undefined ?
+          item: donationIntention.donationNeed ?
             donationIntention.donationNeed.donationItem.itemName : undefined,
           quantity: donationIntention.quantity,
           itemUom: donationIntention.donationNeed != undefined ?
