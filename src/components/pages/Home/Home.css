@@ -1,3 +1,10 @@
 .grid-container-spacing2 {
   height: auto;
 }
+
+.home-image-box {
+  background-image: url("../../../images/background.jpg") !important;
+  background-size: 100% !important;
+  width: 100%;
+  height: calc(100vh - 64px);
+}

@@ -10,7 +10,6 @@ import DonationDetail from './components/donationDetail/DonationDetail';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Stock from './components/pages/Stock/Stock';
 import { createMuiTheme, MuiThemeProvider, makeStyles, Box } from '@material-ui/core';
-import backgroundImage from './images/background.jpg'
 
 export interface Props {
   pageTitle: string

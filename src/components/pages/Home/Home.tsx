@@ -16,10 +16,7 @@ import backgroundImage from '../../../images/background.jpg'
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(8),
-    margin: 0,
-    backgroundColor: 'transparent',
-    backgroundImage: `url(${backgroundImage})`,
-    backgroundSize: '100%'
+    margin: 0
   },
   control: {
     padding: theme.spacing(4),
@@ -62,6 +59,7 @@ const Home: React.FC = () => {
   const classes = useStyles();
   if (isManager) {
   return (
+    <div className="home-image-box">
     <Box className={classes.root}>
       <Grid container justify="center" spacing={2}>
         <Grid key={1} item>
@@ -137,6 +135,7 @@ const Home: React.FC = () => {
         </Grid>
       </Grid>
     </Box>
+    </div>
   );
   } else {
     return (
