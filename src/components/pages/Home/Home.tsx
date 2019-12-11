@@ -53,104 +53,52 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const isManager = false;
+const isManager = true;
 
 const Home: React.FC = () => {
   const classes = useStyles();
   if (isManager) {
   return (
     <div className="home-image-box">
-    <Box className={classes.root}>
-      <Grid container justify="center" spacing={2}>
-        <Grid key={1} item>
-          <Link className={classes.link}  to="/donationIntentions">
-            <Card className={classes.card}>
-              <CardActionArea className={classes.cardContent}>
-                <FavoriteBorder color="primary" className={classes.icon}/>
-                <CardContent className={classes.cardContentClass}>
-                  <Typography className={classes.title} gutterBottom variant="h5" component="h2">
-                    Intenções
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Link>
-        </Grid>
-        <Grid key={2} item>
-          <Link className={classes.link}  to="/donations">
-            <Card className={classes.card}>
-              <CardActionArea className={classes.cardContent}>
-              <InsertEmoticonIcon color="primary" className={classes.icon}/>
-              <CardContent>
-                  <Typography className={classes.title} gutterBottom variant="h5" component="h2">
-                    Doações
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Link>
-        </Grid>
-        <Grid key={4} item>
-          <Link className={classes.link}  to="/donationNeedCreation">
-            <Card className={classes.card}>
-              <CardActionArea className={classes.cardContent}>
-                <EmojiPeopleIcon color="primary" className={classes.icon}/>
-                <AddIcon color="primary" className={classes.addIcon}/>
-                <CardContent>
-                  <Typography className={classes.title} gutterBottom variant="h5" component="h2">
-                    Cadastro de Necessidade
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Link>
-        </Grid>
-        <Grid key={3} item>
-          <Link className={classes.link}  to="/donationsNeeds">
-            <Card className={classes.card}>
-              <CardActionArea className={classes.cardContent}>
-              <EmojiPeopleIcon color="primary" className={classes.icon}/>
-                <CardContent>
-                  <Typography className={classes.title} gutterBottom variant="h5" component="h2">
-                    Necessidades de Doações
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Link>
-        </Grid>
-        <Grid key={4} item>
-          <Link className={classes.link}  to="/stock">
-            <Card className={classes.card}>
-              <CardActionArea className={classes.cardContent}>
-                <ListAltIcon color="primary" className={classes.icon}/>
-                <CardContent>
-                  <Typography className={classes.title} gutterBottom variant="h5" component="h2">
-                    Estoque
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Link>
-        </Grid>
-      </Grid>
-    </Box>
-    </div>
-  );
-  } else {
-    return (
-      <div className="home-image-box">
       <Box className={classes.root}>
         <Grid container justify="center" spacing={2}>
-          <Grid key={0} item>
-            <Link className={classes.link} to="/donationIntentionCreation">
+          <Grid key={1} item>
+            <Link className={classes.link}  to="/donationIntentions">
               <Card className={classes.card}>
                 <CardActionArea className={classes.cardContent}>
                   <FavoriteBorder color="primary" className={classes.icon}/>
+                  <CardContent className={classes.cardContentClass}>
+                    <Typography className={classes.title} gutterBottom variant="h5" component="h2">
+                      Intenções
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Link>
+          </Grid>
+          <Grid key={2} item>
+            <Link className={classes.link}  to="/donations">
+              <Card className={classes.card}>
+                <CardActionArea className={classes.cardContent}>
+                <InsertEmoticonIcon color="primary" className={classes.icon}/>
+                <CardContent>
+                    <Typography className={classes.title} gutterBottom variant="h5" component="h2">
+                      Doações
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Link>
+          </Grid>
+          <Grid key={4} item>
+            <Link className={classes.link}  to="/donationNeedCreation">
+              <Card className={classes.card}>
+                <CardActionArea className={classes.cardContent}>
+                  <EmojiPeopleIcon color="primary" className={classes.icon}/>
                   <AddIcon color="primary" className={classes.addIcon}/>
                   <CardContent>
                     <Typography className={classes.title} gutterBottom variant="h5" component="h2">
-                      Cadastro de Intenções
+                      Cadastro de Necessidade
                     </Typography>
                   </CardContent>
                 </CardActionArea>
@@ -171,8 +119,60 @@ const Home: React.FC = () => {
               </Card>
             </Link>
           </Grid>
+          <Grid key={4} item>
+            <Link className={classes.link}  to="/stock">
+              <Card className={classes.card}>
+                <CardActionArea className={classes.cardContent}>
+                  <ListAltIcon color="primary" className={classes.icon}/>
+                  <CardContent>
+                    <Typography className={classes.title} gutterBottom variant="h5" component="h2">
+                      Estoque
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Link>
+          </Grid>
         </Grid>
       </Box>
+    </div>
+  );
+  } else {
+    return (
+      <div className="home-image-box">
+        <Box className={classes.root}>
+          <Grid container justify="center" spacing={2}>
+            <Grid key={0} item>
+              <Link className={classes.link} to="/donationIntentionCreation">
+                <Card className={classes.card}>
+                  <CardActionArea className={classes.cardContent}>
+                    <FavoriteBorder color="primary" className={classes.icon}/>
+                    <AddIcon color="primary" className={classes.addIcon}/>
+                    <CardContent>
+                      <Typography className={classes.title} gutterBottom variant="h5" component="h2">
+                        Cadastro de Intenções
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Link>
+            </Grid>
+            <Grid key={3} item>
+              <Link className={classes.link}  to="/donationsNeeds">
+                <Card className={classes.card}>
+                  <CardActionArea className={classes.cardContent}>
+                  <EmojiPeopleIcon color="primary" className={classes.icon}/>
+                    <CardContent>
+                      <Typography className={classes.title} gutterBottom variant="h5" component="h2">
+                        Necessidades de Doações
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Link>
+            </Grid>
+          </Grid>
+        </Box>
       </div>
     );
   }
