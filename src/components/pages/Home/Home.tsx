@@ -53,7 +53,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const isManager = true;
+const isManager = false;
 
 const Home: React.FC = () => {
   const classes = useStyles();
@@ -139,6 +139,7 @@ const Home: React.FC = () => {
   );
   } else {
     return (
+      <div className="home-image-box">
       <Box className={classes.root}>
         <Grid container justify="center" spacing={2}>
           <Grid key={0} item>
@@ -172,6 +173,7 @@ const Home: React.FC = () => {
           </Grid>
         </Grid>
       </Box>
+      </div>
     );
   }
 }
