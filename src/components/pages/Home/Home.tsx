@@ -15,15 +15,15 @@ import backgroundImage from '../../../images/background.jpg'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(8),
+    padding: theme.spacing(2),
     margin: 0
   },
   control: {
     padding: theme.spacing(4),
   },
   card: {
-    maxWidth: 400,
-    minWidth: 200
+    maxWidth: 233,
+    minWidth: 233
   },
   cardContent: {
     fontSize: 10,
