@@ -32,10 +32,11 @@ export class DonationIntentionService {
     return response.data;
   }
 
-  public static async rejectIntention(donationIntention: any): Promise<any> {
+  public static async rejectIntention(donationIntention: any, reprovedReason: string): Promise<any> {
     const response = await Axios.post(BackendURI + DonationIntentionRoute.RejectDonation, donationIntention, {
       params: {
-        intentionId: donationIntention._id
+        intentionId: donationIntention._id,
+        reprovedReason: reprovedReason
       }
     });
     return response.data;
