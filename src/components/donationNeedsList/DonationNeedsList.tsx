@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DonationNeed } from '../../models/DonationNeed';
 import { DonationNeedService } from '../../services/DonationNeedService';
-import { List, ListItemAvatar, Avatar, ListItemText, ListItem, ListItemSecondaryAction, IconButton, Button, makeStyles, Fab } from '@material-ui/core';
+import { List, ListItemAvatar, Avatar, ListItemText, ListItem, ListItemSecondaryAction, IconButton, Button, makeStyles, Fab, Tooltip } from '@material-ui/core';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
@@ -66,28 +66,36 @@ const DonationNeedsList: React.FC<RouteComponentProps> = (props, context) => {
 
   return (
     <div>
+      <Tooltip title="Add">
       <Fab color="primary" aria-label="add" className={classes.fab} onClick={redirectToDonationNeedCreation}>
-        <AddIcon />
+        <AddIcon/>
       </Fab>
+      </Tooltip>
       <List>
         { donationNeeds.map(donationNeed =>
           <ListItem button divider component={Link} to={{ pathname: '/donationIntentionCreation', state: { donation: donationNeed}} }>
             <ListItemAvatar>
-              <Avatar>
-                <EmojiPeopleIcon />
-              </Avatar>
+            <Tooltip title="Donation">
+                <Avatar>
+                  <EmojiPeopleIcon />
+                </Avatar>
+              </Tooltip>
             </ListItemAvatar>
             <ListItemText
               primary={ donationNeed.donationItem ? donationNeed.donationItem.itemName : "" }
               secondary={ buildItemQuantityText(donationNeed) }
             />
             <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="edit" onClick={() => { redirectToDonationNeedEdition(donationNeed._id)} }>
-                <EditIcon />
-              </IconButton>
-              <IconButton edge="end" aria-label="delete" onClick={() => { deleteDonationNeed(donationNeed._id)} }>
-                <DeleteIcon />
-              </IconButton>
+              <Tooltip title="Edit">
+                <IconButton edge="end" aria-label="edit" onClick={() => { redirectToDonationNeedEdition(donationNeed._id)} }>
+                  <EditIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Delete">
+                <IconButton edge="end" aria-label="delete" onClick={() => { deleteDonationNeed(donationNeed._id)} }>
+                  <DeleteIcon />
+                </IconButton>
+              </Tooltip>
             </ListItemSecondaryAction>
           </ListItem>,
         )}
