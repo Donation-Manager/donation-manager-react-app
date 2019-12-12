@@ -44,16 +44,16 @@ const DonationIntentionForm: React.FC<RouteComponentProps> = (props, context) =>
 
     DonationIntentionService.createDonationIntention(data).then(() => {
       alert(DonationIntentionMessage.CreatedSuccessfully);
-      redirectToDonationIntentions();
+      redirectToHome();
     }).catch(err => {
       console.log(err);
     });
   }
 
-  const redirectToDonationIntentions = () => {
+  const redirectToHome = () => {
     const { history } = props;
     if(history) {
-      history.push("/donationIntentions");
+      history.push("/");
     }
   }
 
