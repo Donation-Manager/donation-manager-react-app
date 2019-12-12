@@ -23,12 +23,11 @@ const useStyles = makeStyles(theme => ({
   },
   card: {
     maxWidth: 400,
-    minWidth: 250
+    minWidth: 200
   },
   cardContent: {
     fontSize: 10,
     paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2),
     textDecoration: 'none',
     textAlign: "center"
   },
@@ -81,7 +80,7 @@ const Home: React.FC = () => {
               <Card className={classes.card}>
                 <CardActionArea className={classes.cardContent}>
                 <InsertEmoticonIcon color="primary" className={classes.icon}/>
-                <CardContent>
+                  <CardContent>
                     <Typography className={classes.title} gutterBottom variant="h5" component="h2">
                       Doações
                     </Typography>
